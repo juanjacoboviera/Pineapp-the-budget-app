@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <title>Home</title>
 </head>
@@ -73,7 +74,7 @@
                                 <label for="entryType">Type</label>
                                 <div class="checkbox__container">
                                     <div>
-                                        <input id="income" type="radio" value="income" class="radio" checked="true">
+                                        <input id="income" type="radio" value="income" class="radio">
                                         <label  for="income">Income</label>
                                     </div>
                                    <div>
@@ -83,8 +84,8 @@
                                 </div>
                             </div>
                             <div class="entry__div" id="incomeCat">
-                                <label for="incomeCategory">Income Category</label>
-                                <select class="categories" name="income" id="incomeCategory">
+                                <label id="categoryTitle" for="incomeCategory">Category</label>
+                                <select class="categories" name="income" id="incomeCategory" disabled>
                                     <option value="select">Select</option>
                                     <option value="extras">Extras</option>
                                     <option value="salary">Salary</option>
@@ -135,7 +136,8 @@
             </div>
         </section>
     </mainv>
-   <script src="../js/newEntry.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="../js/dashboard.js"></script>
+    <script src="../js/newEntry.js"></script>
 </body>
 </html>
