@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Home</title>
+</head>
+<body>
+    <main class="dashboard__container">
+        <section class="nav__container">
+            <nav class="dashboard__nav">
+                <ul>
+                    <div>
+                        <li id="nav__link1"><a href="../pages/dashboard.html">Dashboard</a></li>
+                        <li id="nav__link2"><a href="../pages/newEntry.html">Add Entry</a></li>
+                        <li id="nav__link3"><a href="../pages/dataTable.html">Data Table</a></li>
+                    </div>
+                    <div>
+                        <li id="nav__link4"><a href="#">Log out</a></li>
+                    </div>
+                </ul>
+            </nav>
+        </section>
+        <section class="data__container">
+            <div class="generalInfo__container">
+                <div class="user__container">
+                    <div class="user__avatar">
+                        <img  src="../img/boredApe.jpg" alt="" width="55px" height="auto">
+                    </div>
+                    <div class="user__greeting">
+                        <h2></h2>
+                        <p>John Doe</p>
+                    </div>
+                </div>
+                <div class="summary__container">
+                    <div class="summary__card">
+                        <div class="summary__total">
+                                <h1>Total Balance</h1>
+                                <p>$ 4800.00</p>
+                         </div>
+                    </div>
+                    <div class="summary__card summary__card-detail">
+                        <div class="summary__icon">
+                            <i class="fa-solid fa-arrow-up iconBackground__circle"></i>
+                        </div>
+                        <div class="summary__total incomeExpenses__total">
+                                <h1>Income</h1>
+                                <p>$ 2.500.00</p>
+                         </div>
+                    </div>
+                    <div class="summary__card summary__card-detail">
+                        <div class="summary__icon icon__color">
+                            <i class="fa-solid fa-arrow-down iconBackground__circle"></i>
+                        </div>
+                        <div class="summary__total incomeExpenses__total">
+                                <h1>Expenses</h1>
+                                <p>$ 800.00</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main__container">
+                <div class="newEntry__container">
+                    <h2 class="section__title">New Entry</h2>
+                    <div class="newEntry__layout">
+                        <form action="" class="entry__form">
+                            <input type="hidden">
+                            <div class="entry__div">
+                                <label for="entryType">Type</label>
+                                <div class="checkbox__container">
+                                    <div>
+                                        <input id="income" type="radio" value="income" class="radio" checked="true">
+                                        <label  for="income">Income</label>
+                                    </div>
+                                   <div>
+                                        <input id="expense" type="radio" value="expense" class="radio">
+                                        <label for="expense">Expense</label>
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="entry__div" id="incomeCat">
+                                <label for="incomeCategory">Income Category</label>
+                                <select class="categories" name="income" id="incomeCategory">
+                                    <option value="select">Select</option>
+                                    <option value="extras">Extras</option>
+                                    <option value="salary">Salary</option>
+                                    <option value="loan">Loan</option>
+                                    <option value="revenue">Revenue</option>
+                                    <option value="freelance">Freelance</option>
+                                </select>
+                            </div>
+                            <div class="entry__div hideCategory" id="expenseCat">
+                                <label for="expenseCategory">Expense Category</label>
+                                <select class="categories" name="expense" id="expenseCategory">
+                                    <option value="select2">Select</option>
+                                    <option value="home">Home</option>
+                                    <option value="transport">Transport</option>
+                                    <option value="food">Food</option>
+                                    <option value="shopping">Shopping</option>
+                                    <option value="health">Health</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="pets">Pets</option>
+                                    <option value="travel">Travel</option>
+                                    <option value="technology">Technology</option>
+                                    <option value="education">Education</option>
+                                    <option value="taxes">Taxes</option>
+                                    <option value="insurance">Insurance</option>
+                                    <option value="debtPayment">Debt Payment</option>
+                                    <option value="myBusiness">Company</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="entry__div">
+                                <label for="description">Description</label>
+                                <input class="entry__inputStyle" id="description" type="text" placeholder="Flight tickets">
+                            </div>
+                            <div class="entry__div">
+                                <label for="amount">Amount</label>
+                                <input class="entry__inputStyle" id="amount" type="number" placeholder="$500.000">
+                            </div>
+                            <div class="entry__div">
+                                <label for="date2">Date</label>
+                                <input class="entry__inputStyle" id="date2" type="date">
+                            </div>
+                            <div class="entry__div">
+                                <button class="createEntryBtn" type="submit">Create entry</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </mainv>
+   <script src="../js/newEntry.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,708 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;;
+}
+
+body{
+    background-color: lavender;
+}
+
+/* 0. LOGIN */
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.card{
+    border-radius: 10px;
+    margin-top: 50px;
+    width: 350px;
+    height: 450px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+}
+
+.card__background{
+    width: 350px;
+    height: 210px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #21D4FD;
+    background: linear-gradient(109.6deg, rgb(78, 62, 255) 11.2%, rgb(164, 69, 255) 91.1%);
+
+}
+
+.card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card__title{
+    position: absolute;
+    width: 170px;
+    top: 80px;
+    left: 30px;
+}
+
+.card__title h1 {
+    font-size: 1.5rem;
+    color: white;
+}
+
+
+.card__title p {
+    margin-top: 5px;
+    font-size: 0.5rem;
+    font-weight: 200;
+    color: white;
+}
+
+.card h2{
+    font-size: 1rem;
+    text-align: center;
+    margin: 20px 0;
+    color: rgb(63, 63, 63);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.username{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.password{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.login__button{
+    margin: 15px 0 0 0;
+    color: white;
+    border-style: none;
+    width: 80px;
+    height: 30px;
+    cursor: pointer;;
+    background: linear-gradient(109.6deg, rgb(78, 62, 255) 11.2%, rgb(164, 69, 255) 91.1%);
+}
+
+label{
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgb(63, 63, 63);
+    margin-bottom: 5px;
+}
+
+input {
+    border-style: none;
+    border-bottom: 1px solid rgb(226, 226, 226);
+    font-size: 0.6rem;
+    font-weight: 500;  
+}
+
+input:focus{
+    outline: none;
+}
+
+::placeholder {
+color: rgb(161, 161, 161);
+}
+
+.error{
+    color: red;
+    margin-top: 5px;
+    font-size: 0.7rem;
+}
+
+/* NAV &  MAIN INFO */
+
+.dashboard__container{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+
+.dashboard__nav {
+    height: 100vh;
+    width: 190px;
+ background: linear-gradient(109.6deg, rgb(78, 62, 255) 11.2%, rgb(164, 69, 255) 91.1%);
+ /* background-color: #6d42c7; */
+
+} 
+
+.dashboard__nav ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+
+} 
+
+.dashboard__nav ul div:nth-child(1){
+    margin-top: 60px;
+}
+
+
+.dashboard__nav ul li{
+    margin: 40px 0;
+   list-style: none;
+
+}
+
+.dashboard__nav ul a{
+    text-decoration: none;
+    color: white;
+}
+
+#nav__link1 a::before{
+    font-family: "FontAwesome";
+    padding-right: 10px;
+    font-weight: 500;
+    content: "\e0ea";
+}
+
+#nav__link2 a::before{
+    font-family: "FontAwesome";
+    padding-right: 10px;
+    font-weight: 500;
+    content: "\f0fe";
+}
+
+#nav__link3 a::before{
+    font-family: "FontAwesome";
+    padding-right: 10px;
+    font-weight: 500;
+    content: "\f0ce";
+}
+
+#nav__link4 a::before{
+    font-family: "FontAwesome";
+    padding-right: 10px;
+    font-weight: 500;
+    content: "\f084";
+}
+
+/* General info */
+
+.generalInfo__container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* User info */
+
+.user__container{
+    display: flex;
+    flex-direction: row;
+    height: 115px;
+    align-items: center;
+}
+
+.user__avatar img {
+    border-radius: 50%;
+    margin: 0 15px
+}
+
+.user__greeting h2{
+    font-size: 0.8rem;
+    font-weight:600;
+    color: rgb(159, 159, 159);
+}
+
+.user__greeting p{
+    font-weight: 600;
+}
+
+/* Summary info */
+
+.summary__container{
+    display: flex;
+    flex-direction: row;
+}
+
+.summary__card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px, rgba(0, 0, 0, 0.19) 0px 6px 20px 0px;
+    background: linear-gradient(109.6deg, rgb(78, 62, 255) 11.2%, rgb(164, 69, 255) 91.1%);
+}
+
+.summary__card-detail{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.summary__total{
+    color: white;
+}
+
+.summary__total h1 {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.summary__total p{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.incomeExpenses__total{
+    margin-left: 10px;
+}
+
+.incomeExpenses__total h1{
+    text-align: initial;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.incomeExpenses__total p{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.summary__icon{
+    color: green;
+    font-size: 1rem;
+}
+
+.icon__color{
+    color: red;
+}
+
+.icon__color2{
+    color: green;
+}
+
+.iconBackground__circle{
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    padding-top: 2px;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.6;
+    
+}
+
+/* Main container */
+.main__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+
+/* 1. DASHBOARD */
+
+.currencies__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 15px 20px 15px 20px;
+}
+
+.section__title{
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.currencies__card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    background-color: #c6e3fd;
+    /* background-image: linear-gradient(270deg, #c6e3fd 0%, #f1e0ff 100%);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px, rgba(0, 0, 0, 0.19) 0px 6px 20px 0px; */
+    background-color: white;
+}
+
+.currency__info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    margin: 20px;
+}
+
+.currency__info h2{
+    font-size: 0.8rem;
+    margin: 0 10px;
+}
+
+.flag__wrapper{
+    position: relative;
+    height: auto;
+    width: 29px;
+    display: inline-flex;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.currency__img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+.currency__value p{
+    font-size: 0.8rem;
+}
+
+.flag__wrapper::after {
+    content: " ";
+    position: absolute;
+    width: 92%;
+    height: 90%;
+    border: 1px solid rgba(0, 17, 51, 0.15); 
+    /* border-radius: 2px; */
+}
+
+/* Bottom Half Container*/
+
+.bottomHalf__container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 0px 20px 20px 20px;
+    height:269px;
+}
+
+/* Recent entries */
+
+.recentEntries__container{
+    /* background-color: #edf2fd; */
+    border-radius: 10px;
+    width: 100%;
+}
+
+.generic__container{
+    height: 239px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.recentEntries__card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(245, 245, 245);
+    /* background-color: #edf2fd; */
+    width: 100%;
+    height: 60px;
+}
+
+.left__section{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.left__section h2{
+    font-size: 0.8rem;
+}
+
+.left__section p {
+    font-size: 0.8rem;
+}
+
+.right__section{
+    margin-right: 10px;
+}
+
+.right__section p{
+    font-size: 0.9rem;
+    font-weight: 400;
+    /* color: #ff0000; */
+}
+
+/* Graphs */
+
+.graph__container{
+    /* border: 1px solid #edf2fd; */
+    /* background-color: #edf2fd; */
+    width: 100%;
+}
+
+.graph__img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* 2. ADD ENTRY */
+
+.newEntry__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 350px;
+    margin: 15px 20px 15px 20px;
+}
+.newEntry__container h2{
+    align-self: flex-start;
+}
+
+.newEntry__layout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 260px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 0px 0px, rgb(0 0 0 / 10%) 0px 6px 20px 0px;
+}
+
+.entry__form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 90%;
+}
+
+.entry__div{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 30px;
+    width: 162px;
+}
+
+.checkbox__container{
+    display: flex;
+    flex-direction: row;
+}
+
+.checkbox__container label{
+    /* padding: 5px; */
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.checkbox__container div{
+    margin: 5px;
+}
+
+
+.entry__div select{
+    background-color: #edf2fd;
+}
+
+.hideCategory{
+    display: none;
+} 
+
+.description__section{
+    display: flex;
+    flex-direction: column;
+}
+
+.entry__inputStyle{
+    border-bottom: 1px solid rgb(141, 141, 141);
+    /* border: 1px solid rgb(106, 106, 106); */
+    /* background-color: #edf2fd; */
+    border-radius: 2px;
+    margin-right: 20px;
+    padding-top: 5px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    width: 100%;
+    
+}
+
+.amount__section{
+    display: flex;
+    flex-direction: column;
+}
+
+.createEntryBtn{
+    border-radius: 5px;
+    background-color: #7f42ff;
+    padding: 5px ;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 16px;
+    border-style: none;
+}
+
+/* 3. DATA TABLE */
+/* Filters */
+
+.filters__container{
+    margin-bottom: 10px;
+}
+
+.table__filters{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.search__elements{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 300px;
+}
+
+.search__input{
+    border: 1px solid #d1d1d1;
+    border-radius: 2px;
+    margin-right: 20px;
+    padding: 5px 5px 5px 40px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    width: 100%;
+}
+
+.filter__inputs{
+    border: 1px solid #d1d1d1;
+    border-radius: 2px;
+    margin: 0 20px 0px 10px;
+    padding: 5px 5px 5px 40px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.search__icon{
+    font-size: 0.7rem;
+    position: absolute;
+    left:15px; 
+}
+
+.sort__elements{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 210px;
+}
+
+.sort__icon{
+    font-size: 0.7rem;
+    position: absolute;
+    left:83px; 
+}
+
+/* Table data */
+.table__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 20px;
+    margin-top: 60px;
+}
+
+table{
+    border: 1px solid #d1d1d1;
+    border-spacing: inherit;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 6px 20px 0px;
+
+}
+
+.table__titles-bgColor{
+    background-color: #edf2fd;
+    font-size: 0.8rem;
+    
+}
+
+th{
+    text-align: left;
+    font-weight: 300;
+    padding: 10px 60px 10px 15px;
+}
+
+
+.tr__styles{
+    background-color: #fff;
+}
+
+.tr__styles:nth-child(even){
+    background-color: #edf2fd;
+}
+
+.tr__styles td{
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 20px;
+}
+
+.positive__amount{
+    color: rgb(34, 145, 34);
+}
+
+.align__icon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.table__icons{
+    background-color: rgb(244, 89, 89);
+    /* color: #666666; */
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    padding-top: 8px;
+    margin-right: 10px;
+    opacity: 1; 
+}
+
+.table__buttons{
+    margin-top: 0;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    background-color: #fff;
+    color: black;
+    background-image: none;
+    /* box-shadow: rgba(78, 78, 78, 0.2) 0px 4px 8px 0px, rgba(0, 0, 0, 0.19) 0px 6px 20px 0px; */
+}
+
+.table__buttons:hover{
+    background-color: rgb(231, 231, 231);
+}
+
+
+
+
+
