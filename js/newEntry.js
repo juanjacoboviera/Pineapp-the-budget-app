@@ -36,7 +36,7 @@ class Entry {
         
         let total = amount.reduce((previousValue, currentValue) =>{
             return previousValue + currentValue
-        })
+        }, [])
         return total 
     }
 
@@ -50,9 +50,9 @@ class Entry {
 // functions
 
 const printSummary = () =>{
-    document.querySelector("#income").textContent = entry.totalType("income");
-    document.querySelector("#expenses").textContent = entry.totalType("expense");
-    console.log(document.querySelector("#total").textContent = entry.totalBalance())
+    document.querySelector("#income").textContent = `$ ${entry.totalType("income")}`;
+    document.querySelector("#expenses").textContent = `$ ${entry.totalType("expense")}`;
+    document.querySelector("#total").textContent = `$ ${entry.totalBalance()}`
 }
 
 const createEntry = () =>{
@@ -125,10 +125,10 @@ for (const radio of radios) {
             incomeCategory.classList.remove("hideCategory");
             document.querySelector("#incomeCategory").removeAttribute("disabled");
             document.querySelector("#categoryTitle").textContent = "Income Category"
-        } else if(e.target.value === "expense"){
+        } if(e.target.value === "expense"){
+            incomeOption.checked = false;
             incomeCategory.classList.add("hideCategory");
             expenseCategory.classList.remove("hideCategory");
-            incomeOption.checked = false;
         }
         entryType = e.target.value;
         
