@@ -1,4 +1,5 @@
 // variables
+let entry 
 const incomeOption = document.querySelector("#income");
 const expenseOption = document.querySelector("#expense");
 const categories = document.querySelectorAll(".categories");
@@ -18,9 +19,42 @@ class Entry {
         this.amount = amount;
         this.date = date;
     }
+
+    filterEntries(type){
+        let filteredIncome = entriesLog.filter(el =>{
+            return el.type.includes(type)
+            })
+           
+            return filteredIncome
+    }
+
+    totalType(type){
+        let filteredIncome = this.filterEntries(type);
+        let amount = filteredIncome.map(el =>{
+            return el.amount
+        })
+        
+        let total = amount.reduce((previousValue, currentValue) =>{
+            return previousValue + currentValue
+        })
+        return total 
+    }
+
+    totalBalance(){
+        let income =this.totalType("income")
+        let expenses =this.totalType("expense")
+        return income - expenses;
+    }
 }
 
 // functions
+
+const printSummary = () =>{
+    document.querySelector("#income").textContent = entry.totalType("income");
+    document.querySelector("#expenses").textContent = entry.totalType("expense");
+    console.log(document.querySelector("#total").textContent = entry.totalBalance())
+}
+
 const createEntry = () =>{
     const type = entryType;
     const category = categoryValue;
@@ -28,7 +62,7 @@ const createEntry = () =>{
     const amount = parseFloat(document.querySelector("#amount").value);
     const date = document.querySelector("#date2").value;
 
-    const entry = new Entry(type, category, description, amount, date);
+    entry = new Entry(type, category, description, amount, date);
     entriesLog.push(entry);
 }
 
@@ -62,7 +96,7 @@ const approvedEntryMsg =  () =>{
 
 const failedEntryMsg =  () =>{
     Toastify({
-        text: "You must fill in all inputs",
+        text: "You Must Fill out all Inputs",
         duration: 3000,
         destination: "https://github.com/apvarun/toastify-js",
         newWindow: true,
@@ -119,6 +153,7 @@ submitEntryBtn.addEventListener("click", (e)=>{
     createEntry();
     approvedEntryMsg()
     clearForm();
+    printSummary()
     }
 
 })
