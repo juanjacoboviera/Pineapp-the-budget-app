@@ -19,8 +19,17 @@ const entryIcons = [{type: 'salary',icon: 'fa-money-bill'},
                     {type: 'insurance', icon: 'fa-file-contract'},
                     {type: 'debtPayment', icon: 'fa-file-contract'},
                     {type: 'company', icon: 'fa-briefcase'},
+                    {type: 'expense', icon: 'fa-arrow-down-left'},
+                    {type: 'income', icon: 'fa-arrow-up-right'},
                 ]
 
-                
+const iconSelector = (type, domElement) =>{
+    // const categoryIconInput = document.querySelector("#categoryTypeIcon");
+    let category = entryIcons.find(el =>{
+        return el.type === type
+    })
+    domElement.value = category.icon
+}
 
-export {entryIcons}
+
+export {iconSelector}

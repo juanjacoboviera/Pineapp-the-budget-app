@@ -1,4 +1,5 @@
-import {entryIcons} from '../js/icons.js';
+import {iconSelector} from '../js/icons.js';
+import Entry from '../js/class.js'
 
 // variables
 let entry;
@@ -6,66 +7,17 @@ const incomeOption = document.querySelector("#income");
 const expenseOption = document.querySelector("#expense");
 const categories = document.querySelectorAll(".categories");
 const radios = document.querySelectorAll(".radio");
-const iconInput = document.querySelector("#iconHolder");
+const categoryIconInput = document.querySelector("#categoryTypeIcon");
+const typeIconInput = document.querySelector("#EntryTypeIcon");
 let entryType;
 let categoryValue;
 const submitEntryBtn = document.querySelector(".createEntryBtn");
 let entriesLog = [];
 
-
-// Constructor
-
-class Entry {
-    constructor(type, category, description, amount, date, icon){
-        this.type = type;
-        this.category = category;
-        this.description = description;
-        this.amount = amount;
-        this.date = date;
-        this.icon = icon
-    }
-
-    filterEntries(type){
-        let filteredIncome = entriesLog.filter(el =>{
-            return el.type.includes(type)
-            })
-           
-            return filteredIncome
-    }
-
-    totalType(type){
-        let filteredIncome = this.filterEntries(type);
-        let amount = filteredIncome.map(el =>{
-            return el.amount
-        })
-        
-        let total = amount.reduce((previousValue, currentValue) =>{
-            return previousValue + currentValue
-        }, 0)
-        return total 
-    }
-
-    totalBalance(){
-        let income =this.totalType("income")
-        let expenses =this.totalType("expense")
-        return income - expenses;
-    }
-}
-
-
-// functions
-const iconSelector = () =>{
-    console.log(entryType)
-    let category = entryIcons.find(el =>{
-        return el.type === categoryValue
-    })
-    iconInput.value = category.icon
-}
-
 const printSummary = () =>{
-    document.querySelector("#income").textContent = `$ ${entry.totalType("income")}`;
-    document.querySelector("#expenses").textContent = `$ ${entry.totalType("expense")}`;
-    document.querySelector("#total").textContent = `$ ${entry.totalBalance()}`
+    document.querySelector("#income").textContent = `$ ${entry.totalType("income", entriesLog)}`;
+    document.querySelector("#expenses").textContent = `$ ${entry.totalType("expense", entriesLog)}`;
+    document.querySelector("#total").textContent = `$ ${entry.totalBalance(entriesLog)}`
 }
 
 const createEntry = () =>{
@@ -75,7 +27,7 @@ const createEntry = () =>{
     const amount = parseFloat(document.querySelector("#amount").value);
     const date = document.querySelector("#date2").value;
 
-    entry = new Entry(type, category, description, amount, date, iconInput.value);
+    entry = new Entry(type, category, description, amount, date, categoryIconInput.value, typeIconInput.value);
     entriesLog.push(entry);
     localStorage.setItem("entries", JSON.stringify(entriesLog))
 }
@@ -87,7 +39,6 @@ const clearForm = () =>{
     document.querySelector("#expenseCat").classList.add("hideCategory");
     document.querySelector("#incomeCat").classList.remove("hideCategory");
     categoryValue = undefined
-   
 }
 
 const approvedEntryMsg =  () =>{
@@ -106,7 +57,6 @@ const approvedEntryMsg =  () =>{
         onClick: function(){} // Callback after click
       }).showToast();
 }
-
 
 const failedEntryMsg =  () =>{
     Toastify({
@@ -164,14 +114,12 @@ submitEntryBtn.addEventListener("click", (e)=>{
         console.log("failed")
     }else{
     console.log("approved")
-    iconSelector()
+    iconSelector(categoryValue, categoryIconInput)
+    iconSelector(entryType, typeIconInput)
     createEntry();
     approvedEntryMsg()
     clearForm();
     console.log(entriesLog)
-    document.querySelector("#income").textContent = "";
-    document.querySelector("#expenses").textContent = "";
-    document.querySelector("#total").textContent = ""
     printSummary()
     }
 
