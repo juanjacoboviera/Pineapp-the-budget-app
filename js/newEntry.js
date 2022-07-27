@@ -1,23 +1,28 @@
+import {entryIcons} from '../js/icons.js';
+
 // variables
-let entry 
+let entry;
 const incomeOption = document.querySelector("#income");
 const expenseOption = document.querySelector("#expense");
 const categories = document.querySelectorAll(".categories");
 const radios = document.querySelectorAll(".radio");
-let entryType 
-let categoryValue 
+const iconInput = document.querySelector("#iconHolder");
+let entryType;
+let categoryValue;
 const submitEntryBtn = document.querySelector(".createEntryBtn");
-let entriesLog = []
+let entriesLog = [];
+
 
 // Constructor
 
 class Entry {
-    constructor(type, category, description, amount, date){
+    constructor(type, category, description, amount, date, icon){
         this.type = type;
         this.category = category;
         this.description = description;
         this.amount = amount;
         this.date = date;
+        this.icon = icon
     }
 
     filterEntries(type){
@@ -36,7 +41,7 @@ class Entry {
         
         let total = amount.reduce((previousValue, currentValue) =>{
             return previousValue + currentValue
-        }, [])
+        }, 0)
         return total 
     }
 
@@ -47,7 +52,15 @@ class Entry {
     }
 }
 
+
 // functions
+const iconSelector = () =>{
+    console.log(entryType)
+    let category = entryIcons.find(el =>{
+        return el.type === categoryValue
+    })
+    iconInput.value = category.icon
+}
 
 const printSummary = () =>{
     document.querySelector("#income").textContent = `$ ${entry.totalType("income")}`;
@@ -62,8 +75,9 @@ const createEntry = () =>{
     const amount = parseFloat(document.querySelector("#amount").value);
     const date = document.querySelector("#date2").value;
 
-    entry = new Entry(type, category, description, amount, date);
+    entry = new Entry(type, category, description, amount, date, iconInput.value);
     entriesLog.push(entry);
+    localStorage.setItem("entries", JSON.stringify(entriesLog))
 }
 
 const clearForm = () =>{
@@ -150,13 +164,16 @@ submitEntryBtn.addEventListener("click", (e)=>{
         console.log("failed")
     }else{
     console.log("approved")
+    iconSelector()
     createEntry();
     approvedEntryMsg()
     clearForm();
+    console.log(entriesLog)
+    document.querySelector("#income").textContent = "";
+    document.querySelector("#expenses").textContent = "";
+    document.querySelector("#total").textContent = ""
     printSummary()
     }
 
 })
-
-
 
