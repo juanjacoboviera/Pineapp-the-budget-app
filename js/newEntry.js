@@ -14,11 +14,46 @@ let categoryValue;
 const submitEntryBtn = document.querySelector(".createEntryBtn");
 let entriesLog = [];
 
-const printSummary = () =>{
-    document.querySelector("#income").textContent = `$ ${entry.totalType("income", entriesLog)}`;
-    document.querySelector("#expenses").textContent = `$ ${entry.totalType("expense", entriesLog)}`;
-    document.querySelector("#total").textContent = `$ ${entry.totalBalance(entriesLog)}`
+const getLocalStorageItems = () =>{
+    const localStorageEntries = JSON.parse(localStorage.getItem("entries"));
+    let instanceEntry
+    const classInstance = []
+    localStorageEntries.forEach(el =>{
+        instanceEntry = new Entry(el.type, el.category, el.description, el.amount, el.date, el.iconCategory, el.iconType)
+        return classInstance.push(instanceEntry)
+    })
+    return [classInstance, instanceEntry];
 }
+
+const printSummary = () =>{
+    const [classInstance, instanceEntry] = getLocalStorageItems();
+     document.querySelector("#income").textContent = `$ ${instanceEntry.totalType("income", classInstance)}`;
+     document.querySelector("#expenses").textContent = `$ ${instanceEntry.totalType("expense", classInstance)}`;
+     document.querySelector("#total").textContent = `$ ${instanceEntry.totalBalance(classInstance)}`
+ 
+ }
+ 
+
+
+
+// const printSummary = () =>{
+//     const localStorageEntries = JSON.parse(localStorage.getItem("entries"));
+//     let instanceEntry
+//     const classInstance = []
+//     localStorageEntries.forEach(el =>{
+//         instanceEntry = new Entry(el.type, el.category, el.description, el.amount, el.date, el.iconCategory, el.iconType)
+//         return classInstance.push(instanceEntry)
+//     })
+//     console.log(classInstance)
+//     document.querySelector("#income").textContent = `$ ${instanceEntry.totalType("income", classInstance)}`;
+//     document.querySelector("#expenses").textContent = `$ ${instanceEntry.totalType("expense", classInstance)}`;
+//     document.querySelector("#total").textContent = `$ ${instanceEntry.totalBalance(classInstance)}`
+
+// }
+
+(() =>{
+    printSummary()
+})()
 
 const createEntry = () =>{
     const type = entryType;
@@ -28,8 +63,15 @@ const createEntry = () =>{
     const date = document.querySelector("#date2").value;
 
     entry = new Entry(type, category, description, amount, date, categoryIconInput.value, typeIconInput.value);
-    entriesLog.push(entry);
-    localStorage.setItem("entries", JSON.stringify(entriesLog))
+    if(localStorage.getItem("entries") === null){
+        entriesLog.push(entry);
+        localStorage.setItem("entries", JSON.stringify(entriesLog));
+    } else{
+        const newEntriesLog = JSON.parse(localStorage.getItem("entries"));
+        newEntriesLog.push(entry);
+        localStorage.setItem("entries", JSON.stringify(newEntriesLog));
+    }
+
 }
 
 const clearForm = () =>{

@@ -24,7 +24,6 @@ const entryIcons = [{type: 'salary',icon: 'fa-money-bill'},
                 ]
 
 const iconSelector = (type, domElement) =>{
-    // const categoryIconInput = document.querySelector("#categoryTypeIcon");
     let category = entryIcons.find(el =>{
         return el.type === type
     })

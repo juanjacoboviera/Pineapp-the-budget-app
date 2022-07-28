@@ -1,3 +1,5 @@
+
+
 class Entry {
     constructor(type, category, description, amount, date, iconCategory, iconType){
         this.type = type;
