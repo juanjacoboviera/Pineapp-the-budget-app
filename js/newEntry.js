@@ -33,9 +33,6 @@ const printSummary = () =>{
  
  }
  
-
-
-
 // const printSummary = () =>{
 //     const localStorageEntries = JSON.parse(localStorage.getItem("entries"));
 //     let instanceEntry
@@ -167,3 +164,4 @@ submitEntryBtn.addEventListener("click", (e)=>{
 
 })
 
+export{getLocalStorageItems, printSummary};
