@@ -1,3 +1,4 @@
+import { getLocalStorageItems, printSummary } from './functions.js';
 import {iconSelector} from '../js/icons.js';
 import Entry from '../js/class.js'
 
@@ -13,40 +14,6 @@ let entryType;
 let categoryValue;
 const submitEntryBtn = document.querySelector(".createEntryBtn");
 let entriesLog = [];
-
-const getLocalStorageItems = () =>{
-    const localStorageEntries = JSON.parse(localStorage.getItem("entries"));
-    let instanceEntry
-    const classInstance = []
-    localStorageEntries.forEach(el =>{
-        instanceEntry = new Entry(el.type, el.category, el.description, el.amount, el.date, el.iconCategory, el.iconType)
-        return classInstance.push(instanceEntry)
-    })
-    return [classInstance, instanceEntry];
-}
-
-const printSummary = () =>{
-    const [classInstance, instanceEntry] = getLocalStorageItems();
-     document.querySelector("#income").textContent = `$ ${instanceEntry.totalType("income", classInstance)}`;
-     document.querySelector("#expenses").textContent = `$ ${instanceEntry.totalType("expense", classInstance)}`;
-     document.querySelector("#total").textContent = `$ ${instanceEntry.totalBalance(classInstance)}`
- 
- }
- 
-// const printSummary = () =>{
-//     const localStorageEntries = JSON.parse(localStorage.getItem("entries"));
-//     let instanceEntry
-//     const classInstance = []
-//     localStorageEntries.forEach(el =>{
-//         instanceEntry = new Entry(el.type, el.category, el.description, el.amount, el.date, el.iconCategory, el.iconType)
-//         return classInstance.push(instanceEntry)
-//     })
-//     console.log(classInstance)
-//     document.querySelector("#income").textContent = `$ ${instanceEntry.totalType("income", classInstance)}`;
-//     document.querySelector("#expenses").textContent = `$ ${instanceEntry.totalType("expense", classInstance)}`;
-//     document.querySelector("#total").textContent = `$ ${instanceEntry.totalBalance(classInstance)}`
-
-// }
 
 (() =>{
     printSummary()
@@ -164,4 +131,4 @@ submitEntryBtn.addEventListener("click", (e)=>{
 
 })
 
-export{getLocalStorageItems, printSummary};
+export{getLocalStorageItems};
