@@ -10,6 +10,41 @@
     <title>Home</title>
 </head>
 <body>
+    <section class="modal__container">
+        <div class="modal">
+            <h2 id="modalTitle">New employee</h2>
+            <a  id="closeModal" href="">
+                <i class="fa-solid fa-rectangle-xmark"></i>
+            </a>
+            <div class="employee__creator">
+                <form action="">
+                    <input id="elemento" type="hidden" value="">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" placeholder="Leslie Summers" id="name">
+
+                    </div>
+                    <div>
+                        <label for="position">Position</label>
+                        <input type="text" placeholder="Regional Manager" id="position">
+                    </div>
+                    <div>
+                        <label for="workOrders">Work Orders</label>
+                        <input type="number" placeholder="10" id="workOrders">
+                    </div>
+                    <div>
+                        <label for="tasks">Tasks</label>
+                        <input type="number" placeholder="3" id="tasks">
+                    </div>
+                    <div>
+                        <label for="roles">Roles</label>
+                        <input type="number" placeholder="1" id="roles">
+                    </div>
+                    <button id="submit" type="submit">Create employee</button>
+                </form>
+            </div>
+        </div>
+    </section>
     <main class="dashboard__container">
         <section class="nav__container">
             <nav class="dashboard__nav">
@@ -75,7 +110,7 @@
                                 <label for="dataType">Filter by</label>
                                 <i class="fa-solid fa-filter sort__icon"></i>
                                 <select class="filter__inputs" name="" id="dataType">
-                                    <option value="default">Default</option>
+                                    <option value="">Default</option>
                                     <option value="income">Income</option>
                                     <option value="expense">Expense</option>
                                 </select>
@@ -139,10 +174,13 @@
                                 </td>
                             </tr> -->
                         </tbody>
-                    
-                        
                     </thead>
                    </table>
+                   <div id="paginator__container">
+                    <!-- <p class="paginator__arrow">&lt</p>
+                    <p class="paginator__arrow">></p>  -->
+
+                   </div>
                 </div>
             </div>
         </section>

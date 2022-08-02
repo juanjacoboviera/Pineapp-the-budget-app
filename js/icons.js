@@ -21,6 +21,7 @@ const entryIcons = [{type: 'salary',icon: 'fa-money-bill'},
                     {type: 'company', icon: 'fa-briefcase'},
                     {type: 'expense', icon: 'fa-arrow-down-left'},
                     {type: 'income', icon: 'fa-arrow-up-right'},
+                    {type: 'other', icon: 'fa-o'},
                 ]
 
 const iconSelector = (type, domElement) =>{
