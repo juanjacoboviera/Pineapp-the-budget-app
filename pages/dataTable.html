@@ -12,35 +12,79 @@
 <body>
     <section class="modal__container">
         <div class="modal">
-            <h2 id="modalTitle">New employee</h2>
+            <h2 class="section__title modal__title">Edit Entry</h2>
             <a  id="closeModal" href="">
                 <i class="fa-solid fa-rectangle-xmark"></i>
             </a>
             <div class="employee__creator">
-                <form action="">
-                    <input id="elemento" type="hidden" value="">
-                    <div>
-                        <label for="name">Name</label>
-                        <input type="text" placeholder="Leslie Summers" id="name">
-
+                <form action="" class="entry__form modal__layout">
+                    <input type="hidden">
+                    <div class="entry__div modal__elementWidth">
+                        <label for="entryType">Type</label>
+                        <div class="checkbox__container">
+                            <div>
+                                <input id="income" type="radio" value="income" class="radio" name="option">
+                                <label  for="income">Income</label>
+                            </div>
+                           <div>
+                                <input id="expense" type="radio" value="expense" class="radio" name="option">
+                                <label for="expense">Expense</label>
+                           </div>
+                        </div>
                     </div>
-                    <div>
-                        <label for="position">Position</label>
-                        <input type="text" placeholder="Regional Manager" id="position">
+                    <div class="entry__div modal__elementWidth" id="incomeCat">
+                        <label id="categoryTitle" for="incomeCategory">Category</label>
+                        <select class="categories" name="income" id="incomeCategory" disabled>
+                            <option value="select">Select</option>
+                            <option value="extras">Extras</option>
+                            <option value="salary">Salary</option>
+                            <option value="loan">Loan</option>
+                            <option value="revenue">Revenue</option>
+                            <option value="freelance">Freelance</option>
+                        </select>
                     </div>
-                    <div>
-                        <label for="workOrders">Work Orders</label>
-                        <input type="number" placeholder="10" id="workOrders">
+                    <div class="entry__div hideCategory modal__elementWidth" id="expenseCat">
+                        <label for="expenseCategory">Expense Category</label>
+                        <select class="categories" name="expense" id="expenseCategory">
+                            <option value="select2">Select</option>
+                            <option value="home">Home</option>
+                            <option value="transport">Transport</option>
+                            <option value="food">Food</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="health">Health</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="pets">Pets</option>
+                            <option value="travel">Travel</option>
+                            <option value="technology">Technology</option>
+                            <option value="education">Education</option>
+                            <option value="taxes">Taxes</option>
+                            <option value="insurance">Insurance</option>
+                            <option value="debtPayment">Debt Payment</option>
+                            <option value="myBusiness">Company</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
-                    <div>
-                        <label for="tasks">Tasks</label>
-                        <input type="number" placeholder="3" id="tasks">
+                    <div class="entry__div modal__elementWidth">
+                        <label for="description">Description</label>
+                        <input class="entry__inputStyle" id="description" type="text" placeholder="Flight tickets">
                     </div>
-                    <div>
-                        <label for="roles">Roles</label>
-                        <input type="number" placeholder="1" id="roles">
+                    <div class="entry__div modal__elementWidth">
+                        <label for="amount">Amount</label>
+                        <input class="entry__inputStyle" id="amount" type="number" placeholder="$500.000">
                     </div>
-                    <button id="submit" type="submit">Create employee</button>
+                    <div class="entry__div modal__elementWidth">
+                        <label for="date2">Date</label>
+                        <input class="entry__inputStyle" id="date2" type="date">
+                    </div>
+                    <div class="entry__div hideCategory">
+                        <input class="entry__inputStyle" id="categoryTypeIcon" type="hidden">
+                    </div>
+                    <div class="entry__div hideCategory">
+                        <input class="entry__inputStyle" id="EntryTypeIcon" type="hidden">
+                    </div>
+                    <div class="entry__div modal__elementWidth">
+                        <button class="createEntryBtn" type="submit">Save entry</button>
+                    </div>
                 </form>
             </div>
         </div>
