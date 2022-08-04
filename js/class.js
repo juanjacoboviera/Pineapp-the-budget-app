@@ -6,8 +6,9 @@ class Entry {
         this.description = description;
         this.amount = amount;
         this.date = date;
-        this.iconCategory = iconCategory
-        this.iconType = iconType
+        this.iconCategory = iconCategory;
+        this.iconType = iconType;
+        this.id = Math.random().toString(16).slice(2);;
     }
 
     filterEntries(type, array){

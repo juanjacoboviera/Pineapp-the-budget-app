@@ -1,4 +1,4 @@
-import { getLocalStorageItems, printSummary } from './functions.js';
+import { getLocalStorageItems, printSummary, radiosListener } from './functions.js';
 import {iconSelector} from '../js/icons.js';
 import Entry from '../js/class.js'
 
@@ -9,15 +9,17 @@ const expenseOption = document.querySelector("#expense");
 const categories = document.querySelectorAll(".categories");
 const radios = document.querySelectorAll(".radio");
 const categoryIconInput = document.querySelector("#categoryTypeIcon");
-const typeIconInput = document.querySelector("#EntryTypeIcon");
+const typeIconInput = document.querySelector("#entryTypeIcon");
 let entryType;
 let categoryValue;
 const submitEntryBtn = document.querySelector(".createEntryBtn");
 let entriesLog = [];
 
+
 (() =>{
     printSummary()
 })()
+
 
 const createEntry = () =>{
     const type = entryType;
@@ -83,28 +85,32 @@ const failedEntryMsg =  () =>{
 
 // event listeners
 
-for (const radio of radios) {
-    // const incomeOption = document.querySelector("#income");
-    // const expenseOption = document.querySelector("#expense");
-    const incomeCategory = document.querySelector("#incomeCat");
-    const expenseCategory = document.querySelector("#expenseCat");
-    radio.onclick = (e) =>{
-        if(e.target.value === "income" ){
-            expenseOption.checked = false;
-            expenseCategory.classList.add("hideCategory");
-            incomeCategory.classList.remove("hideCategory");
-            document.querySelector("#incomeCategory").removeAttribute("disabled");
-            document.querySelector("#categoryTitle").textContent = "Income Category"
-        } if(e.target.value === "expense"){
-            incomeOption.checked = false;
-            incomeCategory.classList.add("hideCategory");
-            expenseCategory.classList.remove("hideCategory");
-        }
-        entryType = e.target.value;
-        
-    }
-   
-}
+// const radiosListener = () =>{
+//     for (const radio of radios) {
+//         // const incomeOption = document.querySelector("#income");
+//         // const expenseOption = document.querySelector("#expense");
+//         const incomeCategory = document.querySelector("#incomeCat");
+//         const expenseCategory = document.querySelector("#expenseCat");
+//         radio.onclick = (e) =>{
+//             if(e.target.value === "income" ){
+//                 expenseOption.checked = false;
+//                 expenseCategory.classList.add("hideCategory");
+//                 incomeCategory.classList.remove("hideCategory");
+//                 document.querySelector("#incomeCategory").removeAttribute("disabled");
+//                 document.querySelector("#categoryTitle").textContent = "Income Category"
+//             } if(e.target.value === "expense"){
+//                 incomeOption.checked = false;
+//                 incomeCategory.classList.add("hideCategory");
+//                 expenseCategory.classList.remove("hideCategory");
+//             }
+//             entryType = e.target.value;
+            
+//         }
+       
+//     }
+
+// }
+
 
 categories.forEach(el =>{
     el.addEventListener("change", e =>{
@@ -112,6 +118,15 @@ categories.forEach(el =>{
     })
 
 })
+
+radios.forEach(el =>{
+    el.addEventListener("click", e =>{
+        entryType = e.target.value;
+    })
+
+})
+
+radiosListener()
 
 submitEntryBtn.addEventListener("click", (e)=>{
     e.preventDefault();
