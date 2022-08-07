@@ -1,66 +1,50 @@
 import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg} from './functions.js';
 import {iconSelector} from '../js/icons.js';
 
+// generic variables
 const [classInstance] = getLocalStorageItems();
 const filterByEntryType = document.querySelector(".filter__inputs");
 const filterByDescription = document.querySelector("#search__data");
 const tableContent = document.querySelector("#tableContent");
+const modal = document.querySelector(".modal__container");
+const closeModal = document.querySelector("#closeModal");
+const saveEditEntryBtn = document.querySelector(".createEntryBtn");
+let hiddenInput = document.querySelector("#index__Grabber");
 let filteredArray
 let newArray = []
 let newList = []
-const modal = document.querySelector(".modal__container")
-const closeModal = document.querySelector("#closeModal")
-const saveEditEntryBtn = document.querySelector(".createEntryBtn")
-let hiddenInput = document.querySelector("#index__Grabber")
 
 // edit entry variables
-let radios = document.querySelectorAll(".radio")
-let radio1 = document.querySelector("#income");
-let radio2 = document.querySelector("#expense");
+let radios = document.querySelectorAll(".radio");
 let description = document.querySelector("#description")
 let amount = document.querySelector("#amount");
 let date = document.querySelector("#date2");
 const incomeCategory = document.querySelector("#incomeCat");
 const expenseCategory = document.querySelector("#expenseCat");
-const expenseCategoryInput = document.querySelector("#expenseCategory");
 const categories = document.querySelectorAll(".categories");
-const categoryIcon = document.querySelector("#categoryTypeIcon");
-const entryIcon = document.querySelector("#EntryTypeIcon");
 const categoryIconInput = document.querySelector("#categoryTypeIcon");
 const typeIconInput = document.querySelector("#EntryTypeIcon");
 let categoryValue;
 let entryType;
 
-
-let trData  
-let tdType  
-let tdTypeIcon 
-let tdCategory 
-let tdCategoryIcon 
-let tdDescription 
-let tdAmountString 
-let tdAmountNumbers 
-let tdDate 
-
-
 // pagination variables
 const paginator = document.querySelector("#paginator__container")
-let numberOfItems = classInstance.length
-const numberPerPage = 4
-const currentPage = 1
+let numberOfItems = classInstance.length;
+const numberPerPage = 4;
+const currentPage = 1;
 let numberOfPages = Math.ceil(numberOfItems/numberPerPage)
 
 // pagination functions
 
 const buildPage = (currPage, array) => {
-    const trimStart = (currPage-1)*numberPerPage
-    const trimEnd = trimStart + numberPerPage
+    const trimStart = (currPage-1)*numberPerPage;
+    const trimEnd = trimStart + numberPerPage;
     newArray = array.slice(trimStart, trimEnd)
-    return newArray
+    return newArray;
 }
 
 function accomodatePage(clickedPage) {
-    if (clickedPage <= 1) { return clickedPage + 1}
+    if (clickedPage <= 1) { return clickedPage + 1};
     if (clickedPage >= numberOfPages) { return clickedPage -1}
     return clickedPage
 }
@@ -87,13 +71,14 @@ const buildPagination = (clickedPage) =>{
         }
 }
 
-// Filter functions & object
+// filter functions & filter object
 
 const changeSelectOption = (type, category) => {
     let select = document.querySelector(category);
     let options = Array.from(select.options);
     let optionToSelect = options.find(item => item.value === type);
-    select.value = optionToSelect.value;
+    return select.value = optionToSelect.value;
+    
   };
 
 const searchDescription = (keyword, array) =>{
@@ -153,24 +138,16 @@ const printData = (pageNumber, array) =>{
         el.addEventListener("click", e =>{
             modal.classList.add("showModal")
 
-            // let description = document.querySelector("#description")
-            // let amount = document.querySelector("#amount");
-            // let date = document.querySelector("#date2");
-            // const incomeCategory = document.querySelector("#incomeCat");
-            // const expenseCategory = document.querySelector("#expenseCat");
-            // const categories = document.querySelectorAll(".categories");
-            // const categoryIcon = document.querySelector("#categoryTypeIcon");
-            // const entryIcon = document.querySelector("#EntryTypeIcon");
-            
-            trData = e.target.closest(".tr__styles");
-            tdType = trData.children[0].children[0].getAttribute("data-type");
-            tdTypeIcon = trData.children[0].children[0].getAttribute("data-icon");
-            tdCategory = trData.children[1].children[0].getAttribute("data-type");
-            tdCategoryIcon = trData.children[1].children[0].getAttribute("data-icon");
-            tdDescription = trData.children[2].textContent
-            tdAmountString = trData.children[3].textContent
-            tdAmountNumbers = tdAmountString.replace(/\D/g, '');
-            tdDate = trData.children[4].textContent
+            // Variables to catch the values that will be placed inside the edit entry modal inputs
+            let trData = e.target.closest(".tr__styles");
+            let tdType = trData.children[0].children[0].getAttribute("data-type");
+            let tdTypeIcon = trData.children[0].children[0].getAttribute("data-icon");
+            let tdCategory = trData.children[1].children[0].getAttribute("data-type");
+            let tdCategoryIcon = trData.children[1].children[0].getAttribute("data-icon");
+            let tdDescription = trData.children[2].textContent
+            let tdAmountString = trData.children[3].textContent
+            let tdAmountNumbers = tdAmountString.replace(/\D/g, '');
+            let tdDate = trData.children[4].textContent
           
             if(tdType === "income"){
                 let radio1 = document.querySelector("#income");
@@ -186,19 +163,15 @@ const printData = (pageNumber, array) =>{
                 incomeCategory.classList.add("hideCategory");
                 changeSelectOption(tdCategory,"#expenseCategory")    
             }
+
             description.value = tdDescription;
             amount.value = tdAmountNumbers;
             date.value = tdDate;
             
+            // check if we need this variable
             let dataId = e.target.closest(".table__buttons").getAttribute("data-id");
             hiddenInput.value = dataId;
-            
-    
-            let selectedEntry = newList.find((element, i) =>{
-                return i == dataId; 
-            })
-           
-                    
+                      
             categories.forEach(el =>{
                 el.addEventListener("change", e =>{
                     categoryValue = e.target.value;
@@ -214,17 +187,12 @@ const printData = (pageNumber, array) =>{
                 })
 
             })
-           
-
-            
-
         }
         
         )
     })
     return numberOfItems
 }
-
 
 //EventListeners
 
@@ -233,8 +201,7 @@ radiosListener()
 paginator.addEventListener("click", e =>{
     filters.type = filterByEntryType.value
     let clickedPage = parseInt(e.target.value);
-    // let selectedButton = e.target
-    // selectedButton.classList.add("selected")
+
     if(isNaN(clickedPage)){return}
     numberOfItems =   printData(clickedPage, classInstance)
     numberOfPages = Math.ceil(numberOfItems.length/numberPerPage)
@@ -253,8 +220,6 @@ filterByEntryType.addEventListener("change", e =>{
     numberOfItems =   printData(1, classInstance)
     numberOfPages = Math.ceil(numberOfItems.length/numberPerPage)
     buildPagination(1)
-
-   
 })
 
 document.addEventListener('DOMContentLoaded',() =>{
@@ -272,13 +237,15 @@ closeModal.addEventListener("click", e =>{
 
 saveEditEntryBtn.addEventListener("click", e =>{
     e.preventDefault();
-    if((categoryValue === "select" || expenseCategoryInput.value === "select") || document.querySelector("#description").value.length === 0 || parseFloat(document.querySelector("#amount").value === isNaN()) || document.querySelector("#amount").value === '' || document.querySelector("#date2").value === ""){
+    if(document.querySelector("#description").value.length === 0 || parseFloat(document.querySelector("#amount").value === isNaN()) || document.querySelector("#amount").value === '' || document.querySelector("#date2").value === ""){
         failedEntryMsg("You Must Fill out all Inputs")
+        console.log(expenseCategory.value)
     }else{
         editEntry()
         printData(1, newList)
         printSummary()
         modal.classList.remove("showModal")
         approvedEntryMsg("Entry Edited Successfully")
+        console.log(classInstance)
     }
 })
