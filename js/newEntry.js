@@ -1,4 +1,4 @@
-import { getLocalStorageItems, printSummary, radiosListener } from './functions.js';
+import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg } from './functions.js';
 import {iconSelector} from '../js/icons.js';
 import Entry from '../js/class.js'
 
@@ -49,40 +49,6 @@ const clearForm = () =>{
     categoryValue = undefined
 }
 
-const approvedEntryMsg =  () =>{
-    Toastify({
-        text: "Entry Registered Successfully",
-        duration: 3000,
-        destination: "https://github.com/apvarun/toastify-js",
-        newWindow: true,
-        close: true,
-        gravity: "bottom", // `top` or `bottom`
-        position: "center", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-            background: "#7f42ff",
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
-}
-
-const failedEntryMsg =  () =>{
-    Toastify({
-        text: "You Must Fill out all Inputs",
-        duration: 3000,
-        destination: "https://github.com/apvarun/toastify-js",
-        newWindow: true,
-        close: true,
-        gravity: "bottom", // `top` or `bottom`
-        position: "center", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-            background: "rgb(244, 89, 89)",
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
-}
-
 // event listeners
 
 // const radiosListener = () =>{
@@ -131,14 +97,14 @@ radiosListener()
 submitEntryBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     if(((expenseOption.checked = false) && (incomeOption.checked = false)) || categoryValue === undefined || document.querySelector("#description").value.length === 0 || parseFloat(document.querySelector("#amount").value === isNaN()) || document.querySelector("#amount").value === '' || document.querySelector("#date2").value === ""){
-        failedEntryMsg()
+        failedEntryMsg("You Must Fill out all Inputs")
         console.log("failed")
     }else{
     console.log("approved")
     iconSelector(categoryValue, categoryIconInput)
     iconSelector(entryType, typeIconInput)
     createEntry();
-    approvedEntryMsg()
+    approvedEntryMsg("Entry Registered Successfully")
     clearForm();
     console.log(entriesLog)
     printSummary()

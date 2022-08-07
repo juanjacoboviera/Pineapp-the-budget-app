@@ -20,7 +20,7 @@ const printSummary = () =>{
     if(classInstance === [] || instanceEntry === undefined){
         console.log("LocalStorage is empty. No data to work with.")
     }else {
-        document.querySelector("#income").textContent = `$ ${instanceEntry.totalType("income", classInstance)}`;
+        document.querySelector("#incomeValue").textContent = `$ ${instanceEntry.totalType("income", classInstance)}`;
         document.querySelector("#expenses").textContent = `$ ${instanceEntry.totalType("expense", classInstance)}`;
         document.querySelector("#total").textContent = `$ ${instanceEntry.totalBalance(classInstance)}`
     }
@@ -57,4 +57,39 @@ const printSummary = () =>{
 
 }
 
- export{getLocalStorageItems, printSummary, radiosListener};
+const approvedEntryMsg =  (msg) =>{
+    Toastify({
+        text: msg,
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "#7f42ff",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+}
+
+const failedEntryMsg =  (msg) =>{
+    Toastify({
+        text: msg,
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "rgb(244, 89, 89)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+}
+
+
+ export{getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg};

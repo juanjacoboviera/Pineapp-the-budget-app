@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
     <link rel="stylesheet" href="../css/style.css">
     <title>Home</title>
@@ -18,12 +19,11 @@
             </a>
             <div class="employee__creator">
                 <form action="" class="entry__form modal__layout">
-                    <input  id="entryGrabber" type="hidden">
+                    <input  id="index__Grabber" type="hidden">
                     <div class="entry__div modal__elementWidth">
                         <label for="entryType">Type</label>
                         <div class="checkbox__container">
                             <div>
-                                <!-- Income ID conflict is in this input below -->
                                 <input id="income" type="radio" value="income" class="radio" name="option">
                                 <label  for="income">Income</label>
                             </div>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="summary__total incomeExpenses__total">
                                 <h1>Income</h1>
-                                <p id="income">$ 0</p>
+                                <p id="incomeValue">$ 0</p>
                          </div>
                     </div>
                     <div class="summary__card summary__card-detail">
@@ -230,6 +230,7 @@
             </div>
         </section>
     </main>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script  type="module" src="../js/dataTable.js"></script>
 </body>
 </html>

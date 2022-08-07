@@ -11,6 +11,34 @@ class Entry {
         this.id = Math.random().toString(16).slice(2);;
     }
 
+    // set type(value){
+    //     this.name = value;
+    // }
+
+    // set category(value){
+    //     this.category = value;
+    // }
+
+    // set description(value){
+    //     this.description = value;
+    // }
+
+    // set amount(value){
+    //     this.amount = value;
+    // }
+
+    // set date(value){
+    //     this.date = value;
+    // }
+
+    // set iconCategory(value){
+    //     this.iconCategory = value;
+    // }
+
+    // set iconType(value){
+    //     this.iconType = value;
+    // }
+
     filterEntries(type, array){
         let filteredIncome = array.filter(el =>{
             return el.type.includes(type)
