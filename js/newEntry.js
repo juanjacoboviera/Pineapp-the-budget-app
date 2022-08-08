@@ -51,33 +51,6 @@ const clearForm = () =>{
 
 // event listeners
 
-// const radiosListener = () =>{
-//     for (const radio of radios) {
-//         // const incomeOption = document.querySelector("#income");
-//         // const expenseOption = document.querySelector("#expense");
-//         const incomeCategory = document.querySelector("#incomeCat");
-//         const expenseCategory = document.querySelector("#expenseCat");
-//         radio.onclick = (e) =>{
-//             if(e.target.value === "income" ){
-//                 expenseOption.checked = false;
-//                 expenseCategory.classList.add("hideCategory");
-//                 incomeCategory.classList.remove("hideCategory");
-//                 document.querySelector("#incomeCategory").removeAttribute("disabled");
-//                 document.querySelector("#categoryTitle").textContent = "Income Category"
-//             } if(e.target.value === "expense"){
-//                 incomeOption.checked = false;
-//                 incomeCategory.classList.add("hideCategory");
-//                 expenseCategory.classList.remove("hideCategory");
-//             }
-//             entryType = e.target.value;
-            
-//         }
-       
-//     }
-
-// }
-
-
 categories.forEach(el =>{
     el.addEventListener("change", e =>{
         categoryValue = e.target.value;

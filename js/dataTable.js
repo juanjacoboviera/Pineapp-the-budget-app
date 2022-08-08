@@ -22,8 +22,8 @@ let date = document.querySelector("#date2");
 const incomeCategory = document.querySelector("#incomeCat");
 const expenseCategory = document.querySelector("#expenseCat");
 const categories = document.querySelectorAll(".categories");
-const categoryIconInput = document.querySelector("#categoryTypeIcon");
-const typeIconInput = document.querySelector("#EntryTypeIcon");
+let categoryIconInput = document.querySelector("#categoryTypeIcon");
+let typeIconInput = document.querySelector("#EntryTypeIcon");
 let categoryValue;
 let entryType;
 
@@ -77,6 +77,7 @@ const changeSelectOption = (type, category) => {
     let select = document.querySelector(category);
     let options = Array.from(select.options);
     let optionToSelect = options.find(item => item.value === type);
+    console.log(optionToSelect)
     return select.value = optionToSelect.value;
     
   };
@@ -101,12 +102,30 @@ const editEntry = () =>{
     let i = hiddenInput.value;
     newList[i].type = entryType ? entryType : newList[i].type
     newList[i].category = categoryValue ? categoryValue :  newList[i].category
-    newList[i].description = description.value;
-    newList[i].amount = amount.value;
-    newList[i].date = date.value;
+    newList[i].description = description.value ? description.value : newList[i].description;
+    newList[i].amount = parseFloat(amount.value);
+    newList[i].date = date.value ? date.value : newList[i].date
     newList[i].iconCategory = categoryIconInput.value ? categoryIconInput.value : newList[i].iconCategory;
     newList[i].iconType = typeIconInput.value ? typeIconInput.value : newList[i].iconType;
-    
+     console.log(entryType)
+     console.log(newList[i].type)
+     console.log(newList[i].category)
+
+     localStorage.setItem("entries", JSON.stringify(classInstance));
+}
+
+const clearForm = () =>{
+    // look back in here and test to refactor.
+    document.querySelector(".entry__form").reset()
+    document.querySelector("#incomeCategory").setAttribute("disabled", "disabled");
+    document.querySelector("#expenseCat").classList.add("hideCategory");
+    document.querySelector("#incomeCat").classList.remove("hideCategory");
+    categoryIconInput.value = null
+    typeIconInput.value = null
+    // refactor code above this line
+    entryType = undefined
+    categoryValue = undefined
+    categoryValue = undefined
 }
 
 const printData = (pageNumber, array) =>{
@@ -117,7 +136,7 @@ const printData = (pageNumber, array) =>{
     newList = buildPage(pageNumber, filteredArray)
     newList.map((el, i) =>{
         tableContent.innerHTML += `
-        <tr class="tr__styles" data-id="${i}">
+        <tr class="tr__styles" data-id="${i}" data-obj-id="${el.id}">
         <td><i data-type="${el.type}" data-icon="${el.iconType}" class="fa-solid ${el.iconType} ${el.type === "income"? "icon__color2" : "icon__color"}"></i></td>
         <td>
             <i data-type="${el.category}" data-icon="${el.iconCategory}" class="fa-solid ${el.iconCategory} iconBackground__circle table__icons"></i>
@@ -133,17 +152,22 @@ const printData = (pageNumber, array) =>{
         </tr>
         `
     })
-    const ediBtn = document.querySelectorAll(".editBtn")
+    const deleteBtn = document.querySelectorAll(".deleteBtn");
+    const ediBtn = document.querySelectorAll(".editBtn");
+    
     ediBtn.forEach(el =>{
         el.addEventListener("click", e =>{
             modal.classList.add("showModal")
 
             // Variables to catch the values that will be placed inside the edit entry modal inputs
             let trData = e.target.closest(".tr__styles");
-            let tdType = trData.children[0].children[0].getAttribute("data-type");
             let tdTypeIcon = trData.children[0].children[0].getAttribute("data-icon");
-            let tdCategory = trData.children[1].children[0].getAttribute("data-type");
             let tdCategoryIcon = trData.children[1].children[0].getAttribute("data-icon");
+            let tdType = trData.children[0].children[0].getAttribute("data-type");
+           
+            let tdCategory = trData.children[1].children[0].getAttribute("data-type");
+            
+
             let tdDescription = trData.children[2].textContent
             let tdAmountString = trData.children[3].textContent
             let tdAmountNumbers = tdAmountString.replace(/\D/g, '');
@@ -188,9 +212,36 @@ const printData = (pageNumber, array) =>{
 
             })
         }
+
         
         )
     })
+
+    deleteBtn.forEach((el, i) =>{
+        el.addEventListener("click", e =>{
+            swal("Are you sure you want to delete this entry?", {
+                buttons: [true, "Yes"],
+              }).then((willDelete) => {
+                if(willDelete){
+                    let trData = e.target.closest(".tr__styles").getAttribute("data-obj-id");
+                    let foundEntry = classInstance.find(el => {
+                        return el.id == trData
+                    })
+                    let index = classInstance.indexOf(foundEntry)
+                    classInstance.splice(index,1);
+                    localStorage.setItem("entries", JSON.stringify(classInstance));
+                    printData(1, classInstance)
+                    printSummary()
+                    approvedEntryMsg("Entry deleted successfully")
+
+                }
+              });
+            
+        })
+    })
+
+
+
     return numberOfItems
 }
 
@@ -239,13 +290,13 @@ saveEditEntryBtn.addEventListener("click", e =>{
     e.preventDefault();
     if(document.querySelector("#description").value.length === 0 || parseFloat(document.querySelector("#amount").value === isNaN()) || document.querySelector("#amount").value === '' || document.querySelector("#date2").value === ""){
         failedEntryMsg("You Must Fill out all Inputs")
-        console.log(expenseCategory.value)
     }else{
         editEntry()
-        printData(1, newList)
         printSummary()
+        printData(1, newList)
         modal.classList.remove("showModal")
-        approvedEntryMsg("Entry Edited Successfully")
-        console.log(classInstance)
+        clearForm()
+        approvedEntryMsg("Entry edited successfully")
     }
 })
+

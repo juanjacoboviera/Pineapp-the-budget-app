@@ -566,7 +566,9 @@ color: rgb(161, 161, 161);
 
 /* 3. DATA TABLE */
 
-/* modal */
+/* modals */
+
+/* edit entry modal styles */
 
 .modal__container{
     display: flex;
@@ -622,6 +624,26 @@ color: rgb(161, 161, 161);
     .employee__creator {
        margin: 20px 0;
     }
+
+/* delete entry modal styles */
+
+.swal-footer{
+    text-align: center;
+}
+
+.swal-text {
+    font-size: 14px;
+    color: black;
+}
+
+.swal-button{
+    background-color: #7f42ff;
+}
+
+.swal-button--cancel {
+    color: #555;
+    background-color: #efefef;
+}
 
     
 /* Filters */
