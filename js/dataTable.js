@@ -96,7 +96,7 @@ let filters = {
     date: ""
 }
 
-// edit and print data functions 
+// edit entry, clear modal form and print data functions 
 
 const editEntry = () =>{
     let i = hiddenInput.value;
@@ -152,6 +152,7 @@ const printData = (pageNumber, array) =>{
         </tr>
         `
     })
+    // edit and delete entry features start here
     const deleteBtn = document.querySelectorAll(".deleteBtn");
     const ediBtn = document.querySelectorAll(".editBtn");
     
@@ -228,19 +229,18 @@ const printData = (pageNumber, array) =>{
                         return el.id == trData
                     })
                     let index = classInstance.indexOf(foundEntry)
+                    newList.splice(i, 1)
                     classInstance.splice(index,1);
                     localStorage.setItem("entries", JSON.stringify(classInstance));
-                    printData(1, classInstance)
+                    printData(1, newList)
                     printSummary()
                     approvedEntryMsg("Entry deleted successfully")
 
                 }
-              });
+            });
             
         })
     })
-
-
 
     return numberOfItems
 }
