@@ -1,31 +1,52 @@
 import { printSummary, getLocalStorageItems } from "../js/functions.js";
 
-// (() =>{
-//     printSummary()
-   
-// })()
-
-
 // variables
 const logOut = document.querySelector("#nav__link4");
 const recentEntriesContainer = document.querySelector(".generic__container")
 let [classInstance] = getLocalStorageItems()
 
 
-
 //functions
+var myHeaders = new Headers();
+myHeaders.append("apikey", "rQXF9heikHGGGu2r1BEeiAchlRqKenhJ");
+
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow',
+  headers: myHeaders
+};
+
+fetch("https://api.apilayer.com/exchangerates_data/latest?symbols=EUR%2CJPY%2CCOP%2CCAD%2CGBP&base=USD", requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    const euroInput = document.querySelector("#euro");
+    const gbpInput = document.querySelector("#gbp");
+    const jpyInput = document.querySelector("#jpy");
+    const cadInput = document.querySelector("#cad");
+    const copInput = document.querySelector("#cop");
+
+    const currencies = JSON.parse(result)
+    const {EUR, COP, CAD, GBP, JPY} = currencies.rates;
+
+    euroInput.textContent = EUR.toFixed(2);
+    gbpInput.textContent = GBP.toFixed(2);
+    jpyInput.textContent = JPY.toFixed(2);
+    cadInput.textContent = CAD.toFixed(2);
+    copInput.textContent = COP.toFixed(2);
+    
+})
+  .catch(error => console.log('error', error));
+
+
 
 const printRecentEntries = () =>{
     recentEntriesContainer.innerHTML = "";
     let reversedEntries 
     let slicedEntries
-    // console.log(reversedEntries)
     console.log(classInstance)
     if(classInstance.length >= 4){
         reversedEntries = classInstance.reverse()
         slicedEntries = reversedEntries.slice(0,4)
-        // slicedEntries = classInstance.slice(0,4)
-        // reversedEntries = slicedEntries.reverse()
     }
     console.log(slicedEntries)
     console.log(reversedEntries.length)
