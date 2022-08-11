@@ -91,5 +91,21 @@ const failedEntryMsg =  (msg) =>{
       }).showToast();
 }
 
+const getCategoryTotal = (array, type, category) =>{
+    const filteredType = array.filter(el =>{
+         return el.type == type
+     })
+     const filteredCategory = filteredType.filter(el =>{
+         return el.category == category 
+     })
+     const categoryValues = filteredCategory.map(el =>{
+         return el.amount
+     })
+     const totalCategory = categoryValues.reduce((previousValue, currentValue) =>{
+         return previousValue + currentValue
+     }, 0)
+     return totalCategory
+ }
 
- export{getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg};
+
+ export{getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg,getCategoryTotal};

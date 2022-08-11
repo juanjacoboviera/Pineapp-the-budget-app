@@ -1,55 +1,185 @@
-import { printSummary, getLocalStorageItems } from "../js/functions.js";
+import { printSummary, getLocalStorageItems, getCategoryTotal } from "../js/functions.js";
 
 // variables
 const logOut = document.querySelector("#nav__link4");
 const recentEntriesContainer = document.querySelector(".generic__container")
-let [classInstance] = getLocalStorageItems()
+let [classInstance, instanceEntry] = getLocalStorageItems()
+// chart variables
+let homeCategory = getCategoryTotal(classInstance, "expense", "home");
+let transportCategory = getCategoryTotal(classInstance, "expense", "transport");
+let foodCategory = getCategoryTotal(classInstance, "expense", "food");
+let shoppingCategory = getCategoryTotal(classInstance, "shopping", "food");
+let healthCategory = getCategoryTotal(classInstance, "shopping", "health");
+let entertainmentCategory = getCategoryTotal(classInstance, "shopping", "entertainment");
+let petsCategory = getCategoryTotal(classInstance, "expense", "pets");
+let travelCategory = getCategoryTotal(classInstance, "expense", "travel");
+let technologyCategory = getCategoryTotal(classInstance, "expense", "technology");
+let educationCategory = getCategoryTotal(classInstance, "expense", "education");
+let taxesCategory = getCategoryTotal(classInstance, "expense", "taxes");
+let insuranceCategory = getCategoryTotal(classInstance, "expense", "insurance");
+let debtPaymentCategory = getCategoryTotal(classInstance, "expense", "debtPayment");
+let companyCategory = getCategoryTotal(classInstance, "expense", "myBusiness");
+let otherCategory = getCategoryTotal(classInstance, "expense", "other");
+let totalExpenses = `$ ${instanceEntry.totalType("expense", classInstance)}`;
 
+// chart.js library object
+const data = {
+    labels: ['Home', 'Transport', 'Food', 'Shopping', 'Health', 'Entertainment', 'Pets', 'Travel', 'Technology', 'Education', 'Taxes', 'Insurance','Debt Payment', 'Company', 'Other'],
+    datasets: [{
+      label: 'Your Spending',
+      data: [homeCategory, transportCategory, foodCategory, shoppingCategory, healthCategory, entertainmentCategory, petsCategory, travelCategory, technologyCategory, educationCategory, taxesCategory, insuranceCategory, debtPaymentCategory, companyCategory, otherCategory],
+    //   backgroundColor: [
+    //     'rgba(255, 99, 132)',
+    //     'rgba(54, 162, 235)',
+    //     'rgba(255, 206, 86)',
+    //     'rgba(75, 192, 192)',
+    //     'rgba(153, 102, 255)',
+    //     'rgba(255, 159, 64)'
+    //   ],
+    //   borderColor: [
+    //     'rgba(255, 99, 132, 1)',
+    //     'rgba(54, 162, 235, 1)',
+    //     'rgba(255, 206, 86, 1)',
+    //     'rgba(75, 192, 192, 1)',
+    //     'rgba(153, 102, 255, 1)',
+    //     'rgba(255, 159, 64, 1)'
+    //   ],
+      backgroundColor: [
+        'rgba(76, 201, 240, 1)',
+        'rgba(72, 149, 239, 1)',
+        'rgba(67, 97, 238, 1)',
+        'rgba(63, 55, 201, 1)',
+        'rgba(58, 12, 163, 1)',
+        'rgba(247, 37, 153, 1)',
+        'rgba(244, 89, 89, 1)',
+        'rgba(114, 9, 183, 1)',
+        'rgba(247, 37, 133, 1)',
+        
+      ],
+      borderColor: [
+        'rgba(76, 201, 240, 1)',
+        'rgba(72, 149, 239, 1)',
+        'rgba(67, 97, 238, 1)',
+        'rgba(63, 55, 201, 1)',
+        'rgba(58, 12, 163, 1)',
+        'rgba(247, 37, 153, 1)',
+        'rgba(244, 89, 183, 1)',
+        'rgba(114, 9, 183, 1)',
+        'rgba(247, 37, 133, 1)',
+        
+
+      ],
+      borderWidth: 1,
+      cutout: '60%'
+    }]
+  };
+//   center text plugin
+const centerText = {
+    id: 'centerText',
+    afterDatasetsDraw(chart, args, options){
+        const {ctx, chartArea: {left, right, top, bottom, width, height } } = chart;
+        
+        ctx.save();
+        console.log(top)
+
+        ctx.font = '400 15px Montserrat';
+        ctx.fillstyle = 'rgba(255, 99, 132)';
+        ctx.textAlign = 'center'
+        ctx.fillText('Total', 220, 115)
+
+
+        ctx.font = '600 15px Montserrat';
+        ctx.fillstyle = 'rgba(255, 99, 132)';
+        ctx.textAlign = 'center'
+        ctx.fillText(totalExpenses, 220, 135)
+    }
+   }
+
+
+  // config 
+  const config = {
+    type: 'doughnut',
+    data,
+    options: {
+        layout:{
+            padding: 20
+        },
+        responsive: true,
+        maintainAspectRatio: false, 
+        labels:{
+            display: false,
+        },
+        plugins: {
+            legend: {
+              display: false,
+            },
+            datalabels: {
+                color: 'white',
+                formatter: (value, context) =>{
+                    const dataPoints = context.chart.data.datasets[0].data;
+                    if(value === 0){return null }
+                    function totalSum(total, dataPoint){
+                        return total + dataPoint;
+                    }
+                    const totalValue = dataPoints.reduce(totalSum, 0)        
+                    const percentageValue = (value / totalValue * 100).toFixed(0)
+                    return `${percentageValue}%`
+                },
+            }
+          }  
+    },
+    plugins: [ChartDataLabels, centerText], 
+  };
+
+  // render init block
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+ 
+// exchange rate API call
 
 //functions
-var myHeaders = new Headers();
-myHeaders.append("apikey", "rQXF9heikHGGGu2r1BEeiAchlRqKenhJ");
+// var myHeaders = new Headers();
+// myHeaders.append("apikey", "rQXF9heikHGGGu2r1BEeiAchlRqKenhJ");
 
-var requestOptions = {
-  method: 'GET',
-  redirect: 'follow',
-  headers: myHeaders
-};
+// var requestOptions = {
+//   method: 'GET',
+//   redirect: 'follow',
+//   headers: myHeaders
+// };
 
-fetch("https://api.apilayer.com/exchangerates_data/latest?symbols=EUR%2CJPY%2CCOP%2CCAD%2CGBP&base=USD", requestOptions)
-  .then(response => response.text())
-  .then(result => {
-    const euroInput = document.querySelector("#euro");
-    const gbpInput = document.querySelector("#gbp");
-    const jpyInput = document.querySelector("#jpy");
-    const cadInput = document.querySelector("#cad");
-    const copInput = document.querySelector("#cop");
+// fetch("https://api.apilayer.com/exchangerates_data/latest?symbols=EUR%2CJPY%2CCOP%2CCAD%2CGBP&base=USD", requestOptions)
+//   .then(response => response.text())
+//   .then(result => {
+//     const euroInput = document.querySelector("#euro");
+//     const gbpInput = document.querySelector("#gbp");
+//     const jpyInput = document.querySelector("#jpy");
+//     const cadInput = document.querySelector("#cad");
+//     const copInput = document.querySelector("#cop");
 
-    const currencies = JSON.parse(result)
-    const {EUR, COP, CAD, GBP, JPY} = currencies.rates;
+//     const currencies = JSON.parse(result)
+//     const {EUR, COP, CAD, GBP, JPY} = currencies.rates;
 
-    euroInput.textContent = EUR.toFixed(2);
-    gbpInput.textContent = GBP.toFixed(2);
-    jpyInput.textContent = JPY.toFixed(2);
-    cadInput.textContent = CAD.toFixed(2);
-    copInput.textContent = COP.toFixed(2);
+//     euroInput.textContent = EUR.toFixed(3);
+//     gbpInput.textContent = GBP.toFixed(3);
+//     jpyInput.textContent = JPY.toFixed(3);
+//     cadInput.textContent = CAD.toFixed(3);
+//     // copInput.textContent = COP.toFixed(2);
+//     copInput.textContent = COP.toLocaleString('en-US')
     
-})
-  .catch(error => console.log('error', error));
-
+// })
+//   .catch(error => console.log('error', error));
 
 
 const printRecentEntries = () =>{
     recentEntriesContainer.innerHTML = "";
     let reversedEntries 
     let slicedEntries
-    console.log(classInstance)
     if(classInstance.length >= 4){
         reversedEntries = classInstance.reverse()
         slicedEntries = reversedEntries.slice(0,4)
     }
-    console.log(slicedEntries)
-    console.log(reversedEntries.length)
     slicedEntries.map(el =>{
         recentEntriesContainer.innerHTML += `
         <div class="recentEntries__card">
