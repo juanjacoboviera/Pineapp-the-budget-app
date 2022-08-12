@@ -85,13 +85,16 @@ const centerText = {
         ctx.font = '400 15px Montserrat';
         ctx.fillstyle = 'rgba(255, 99, 132)';
         ctx.textAlign = 'center'
-        ctx.fillText('Total', 220, 115)
+        console.log(width)
+        // ctx.fillText('Total', 220, 115)
+        ctx.fillText('Total', width / 1.85, height / 2 + top)
 
 
         ctx.font = '600 15px Montserrat';
         ctx.fillstyle = 'rgba(255, 99, 132)';
         ctx.textAlign = 'center'
-        ctx.fillText(totalExpenses, 220, 135)
+        // ctx.fillText(totalExpenses, 220, 135)
+        ctx.fillText(totalExpenses, width / 1.85, height / 2 + 35)
     }
    }
 
@@ -193,7 +196,7 @@ const printRecentEntries = () =>{
                 </div>
             </div>
             <div class="right__section">
-                <p class="${el.type === 'income'? 'positive__amount' : ''}">${el.type === 'income'? '+' : '-'} ${el.amount}</p>
+                <p class="${el.type === 'income'? 'positive__amount' : ''}">${el.type === 'income'? '+' : '-'} $${el.amount}</p>
             </div>
         </div>
         `

@@ -730,6 +730,21 @@ color: rgb(161, 161, 161);
     left:83px; 
 }
 
+.calendar__input{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 5px 5px 5px 5px;
+    margin: 0 0 0 10px;
+    width: 250px;
+}
+
+.calendarBtn{
+    border: 0.76px solid #7f42ff;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-top: 0;
+}
+
 /* Table data */
 .table__container{
     display: flex;

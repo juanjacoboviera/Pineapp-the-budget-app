@@ -10,6 +10,8 @@ const modal = document.querySelector(".modal__container");
 const closeModal = document.querySelector("#closeModal");
 const saveEditEntryBtn = document.querySelector(".createEntryBtn");
 let hiddenInput = document.querySelector("#index__Grabber");
+let dateInput = document.getElementById('date__input')
+let resetCalendarBtn = document.querySelector(".calendarBtn")
 let filteredArray
 let newArray = []
 let newList = []
@@ -71,6 +73,7 @@ const buildPagination = (clickedPage) =>{
         }
 }
 
+
 // filter functions & filter object
 
 const changeSelectOption = (type, category) => {
@@ -90,10 +93,24 @@ const selectType = (option, array) =>{
     return array.filter(el => el.type.toLowerCase().includes(option))
 }
 
+const filterDates = (date1, date2, array) =>{
+    let startDate =  Date.parse(date1)
+    let endDate = Date.parse(date2)
+   
+   let result = array.filter(el => {
+        let elementDate = Date.parse(el.date)
+        // console.log(elementDate)
+        return (date1 == "" || elementDate >= startDate) && (date2 == "" || elementDate <= endDate)
+    })
+
+    return result
+}
+
 let filters = {
     description: "",
     type: "",
-    date: ""
+    startDate: "",
+    endDate: "",
 }
 
 // edit entry, clear modal form and print data functions 
@@ -131,6 +148,7 @@ const clearForm = () =>{
 const printData = (pageNumber, array) =>{
     tableContent.innerHTML = "";
     filteredArray = searchDescription(filters.description, array)
+    filteredArray = filterDates(filters.startDate, filters.endDate, filteredArray)
     filteredArray = selectType(filters.type, filteredArray)
     numberOfItems = filteredArray
     newList = buildPage(pageNumber, filteredArray)
@@ -246,6 +264,41 @@ const printData = (pageNumber, array) =>{
 }
 
 //EventListeners
+
+let calendar = flatpickr("#date__input", {
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "Y-m-d",
+    mode: "range",
+    onClose: (dates) => {
+        if(dates[0] || dates[1] != undefined){
+            filters.startDate = dates[0].toISOString().slice(0, 10)
+            filters.endDate = dates[1].toISOString().slice(0, 10)
+        }
+        else{
+            console.log("Dates not selected")
+        }
+       
+       
+        numberOfItems =   printData(1, classInstance)
+        numberOfPages = Math.ceil(numberOfItems.length/numberPerPage)
+        buildPagination(1)
+       
+    //    console.log(filterDates(filters.startDate, filters.endDate, classInstance))
+    }
+    
+});
+
+resetCalendarBtn.addEventListener("click", e =>{
+    e.preventDefault()
+    calendar.clear()
+    filters.startDate = ""
+    filters.endDate = ""
+    printData(1, classInstance)
+    numberOfPages = Math.ceil(numberOfItems.length/numberPerPage)
+    buildPagination(currentPage)
+
+})
 
 radiosListener()
 

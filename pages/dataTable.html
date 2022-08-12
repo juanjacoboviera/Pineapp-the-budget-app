@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <title>Home</title>
 </head>
@@ -161,7 +162,8 @@
                                 </select>
                             </div>
                             <label for="date__input">Search by Date</label>
-                            <input class="filter__inputs" type="date" name="" id="date__input">
+                            <input class="filter__inputs calendar__input" type="date" name="" id="date__input" placeholder="Select Date Range">
+                            <button type="submit" class="createEntryBtn calendarBtn">Reset</button>
                         </form>
                     </div>
                    <table>
@@ -222,9 +224,6 @@
                     </thead>
                    </table>
                    <div id="paginator__container">
-                    <!-- <p class="paginator__arrow">&lt</p>
-                    <p class="paginator__arrow">></p>  -->
-
                    </div>
                 </div>
             </div>
@@ -232,6 +231,7 @@
     </main>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script  type="module" src="../js/dataTable.js"></script>
 </body>
 </html>
