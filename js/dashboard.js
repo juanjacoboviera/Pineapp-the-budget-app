@@ -1,6 +1,6 @@
 import { printSummary, getLocalStorageItems, getCategoryTotal } from "../js/functions.js";
 
-// variables
+// generic variables
 const logOut = document.querySelector("#nav__link4");
 const recentEntriesContainer = document.querySelector(".generic__container")
 let [classInstance, instanceEntry] = getLocalStorageItems()
@@ -28,22 +28,6 @@ const data = {
     datasets: [{
       label: 'Your Spending',
       data: [homeCategory, transportCategory, foodCategory, shoppingCategory, healthCategory, entertainmentCategory, petsCategory, travelCategory, technologyCategory, educationCategory, taxesCategory, insuranceCategory, debtPaymentCategory, companyCategory, otherCategory],
-    //   backgroundColor: [
-    //     'rgba(255, 99, 132)',
-    //     'rgba(54, 162, 235)',
-    //     'rgba(255, 206, 86)',
-    //     'rgba(75, 192, 192)',
-    //     'rgba(153, 102, 255)',
-    //     'rgba(255, 159, 64)'
-    //   ],
-    //   borderColor: [
-    //     'rgba(255, 99, 132, 1)',
-    //     'rgba(54, 162, 235, 1)',
-    //     'rgba(255, 206, 86, 1)',
-    //     'rgba(75, 192, 192, 1)',
-    //     'rgba(153, 102, 255, 1)',
-    //     'rgba(255, 159, 64, 1)'
-    //   ],
       backgroundColor: [
         'rgba(76, 201, 240, 1)',
         'rgba(72, 149, 239, 1)',
@@ -97,8 +81,6 @@ const centerText = {
         ctx.fillText(totalExpenses, width / 1.85, height / 2 + 35)
     }
    }
-
-
   // config 
   const config = {
     type: 'doughnut',

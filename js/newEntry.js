@@ -2,8 +2,9 @@ import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, app
 import {iconSelector} from '../js/icons.js';
 import Entry from '../js/class.js'
 
-// variables
+// generic variables
 let entry;
+const logOut = document.querySelector("#nav__link4");
 const incomeOption = document.querySelector("#income");
 const expenseOption = document.querySelector("#expense");
 const categories = document.querySelectorAll(".categories");
@@ -17,7 +18,11 @@ let entriesLog = [];
 
 
 (() =>{
-    printSummary()
+    if(sessionStorage.getItem("loggedin")){
+        printSummary()
+    } else {
+        window.location.href = "http://192.168.1.3:5500/index.html";
+    }
 })()
 
 
@@ -84,5 +89,11 @@ submitEntryBtn.addEventListener("click", (e)=>{
     }
 
 })
+
+logOut.addEventListener("click", ()=>{
+    sessionStorage.removeItem("loggedin")
+    window.location.href = "http://192.168.1.3:5500/index.html";
+})
+
 
 export{getLocalStorageItems};

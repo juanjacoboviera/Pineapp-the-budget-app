@@ -8,7 +8,7 @@ submitBtn.addEventListener("click", e =>{
     let user = form.userName.value
     let password = parseInt(form.password.value)
     console.log(password)
-    if(user === "juan" && password === 123){
+    if(user === "user" && password === 123){
         let loggedIn = true;
         userError.textContent = ""
         passwordError.textContent = ""
@@ -28,7 +28,7 @@ submitBtn.addEventListener("click", e =>{
         userError.textContent = ""
         passwordError.textContent = "*Enter a password"
     }
-    if ((user.length >=1  && user !== "juan") && !isNaN(password)){
+    if ((user.length >=1  && user !== "user") && !isNaN(password)){
         userError.textContent = "*User does not exist"
         passwordError.textContent = ""
         

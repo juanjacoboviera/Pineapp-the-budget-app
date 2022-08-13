@@ -2,6 +2,7 @@ import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, app
 import {iconSelector} from '../js/icons.js';
 
 // generic variables
+const logOut = document.querySelector("#nav__link4");
 const [classInstance] = getLocalStorageItems();
 const filterByEntryType = document.querySelector(".filter__inputs");
 const filterByDescription = document.querySelector("#search__data");
@@ -327,9 +328,14 @@ filterByEntryType.addEventListener("change", e =>{
 })
 
 document.addEventListener('DOMContentLoaded',() =>{
-    printSummary() 
-    printData(1, classInstance)
-    buildPagination(currentPage)
+    if(sessionStorage.getItem("loggedin")){
+        printSummary() 
+        printData(1, classInstance)
+        buildPagination(currentPage)
+    } else {
+        window.location.href = "http://192.168.1.3:5500/index.html";
+    }
+    
 }, false);
 
 
@@ -351,5 +357,10 @@ saveEditEntryBtn.addEventListener("click", e =>{
         clearForm()
         approvedEntryMsg("Entry edited successfully")
     }
+})
+
+logOut.addEventListener("click", ()=>{
+    sessionStorage.removeItem("loggedin")
+    window.location.href = "http://192.168.1.3:5500/index.html";
 })
 
