@@ -41,6 +41,7 @@ body{
 .nav_barLogging{
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-around;
     padding-top: 20px;
 }
@@ -57,6 +58,7 @@ body{
 
 
 .nav_barLogging ul li{
+    font-size: 0.9rem;
     list-style: none;
     margin: 0 20px;
 }
@@ -73,11 +75,6 @@ body{
     justify-content: end;
     align-items: end;
 }
-
-.img__container img{
-   padding-bottom: 10px;
-}
-
 
 .card{
     border-radius: 10px;
@@ -113,7 +110,7 @@ body{
 
 .card__title h1 {
     font-size: 1.5rem;
-    color: white;
+    color: #dbddfc
 }
 
 
@@ -472,6 +469,28 @@ color: rgb(161, 161, 161);
     height: 239px;
     background-color: #fff;
     border-radius: 10px;
+}
+
+.noData__container{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.noData__container p{
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+.noData__table{
+    background-color: white;
+    height: 280px;
+    width: 100%;
+}
+
+.hiddenData{
+    display: none;
 }
 
 .recentEntries__card{

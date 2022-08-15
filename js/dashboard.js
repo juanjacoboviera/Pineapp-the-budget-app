@@ -8,9 +8,9 @@ let [classInstance, instanceEntry] = getLocalStorageItems()
 let homeCategory = getCategoryTotal(classInstance, "expense", "home");
 let transportCategory = getCategoryTotal(classInstance, "expense", "transport");
 let foodCategory = getCategoryTotal(classInstance, "expense", "food");
-let shoppingCategory = getCategoryTotal(classInstance, "shopping", "food");
-let healthCategory = getCategoryTotal(classInstance, "shopping", "health");
-let entertainmentCategory = getCategoryTotal(classInstance, "shopping", "entertainment");
+let shoppingCategory = getCategoryTotal(classInstance, "expense", "shopping");
+let healthCategory = getCategoryTotal(classInstance, "expense", "health");
+let entertainmentCategory = getCategoryTotal(classInstance, "expense", "entertainment");
 let petsCategory = getCategoryTotal(classInstance, "expense", "pets");
 let travelCategory = getCategoryTotal(classInstance, "expense", "travel");
 let technologyCategory = getCategoryTotal(classInstance, "expense", "technology");
@@ -20,7 +20,10 @@ let insuranceCategory = getCategoryTotal(classInstance, "expense", "insurance");
 let debtPaymentCategory = getCategoryTotal(classInstance, "expense", "debtPayment");
 let companyCategory = getCategoryTotal(classInstance, "expense", "myBusiness");
 let otherCategory = getCategoryTotal(classInstance, "expense", "other");
-let totalExpenses = `$ ${instanceEntry.totalType("expense", classInstance)}`;
+let totalExpenses = instanceEntry? `$ ${instanceEntry.totalType("expense", classInstance)}` : "$ 0";
+let graphContainer = document.querySelector("#graph")
+
+
 
 // chart.js library object
 const data = {
@@ -64,21 +67,25 @@ const centerText = {
         const {ctx, chartArea: {left, right, top, bottom, width, height } } = chart;
         
         ctx.save();
-        console.log(top)
+        
 
         ctx.font = '400 15px Montserrat';
         ctx.fillstyle = 'rgba(255, 99, 132)';
         ctx.textAlign = 'center'
-        console.log(width)
+
         // ctx.fillText('Total', 220, 115)
-        ctx.fillText('Total', width / 1.85, height / 2 + top)
+      
 
 
         ctx.font = '600 15px Montserrat';
         ctx.fillstyle = 'rgba(255, 99, 132)';
         ctx.textAlign = 'center'
         // ctx.fillText(totalExpenses, 220, 135)
-        ctx.fillText(totalExpenses, width / 1.85, height / 2 + 35)
+        console.log(totalExpenses)
+        if(totalExpenses !== "$ 0"){
+            ctx.fillText('Total', width / 1.85, height / 2 + top)
+            ctx.fillText(totalExpenses, width / 1.85, height / 2 + 35)
+        }
     }
    }
   // config 
@@ -161,7 +168,7 @@ const printRecentEntries = () =>{
     recentEntriesContainer.innerHTML = "";
     let reversedEntries 
     let slicedEntries
-    if(classInstance.length >= 4){
+    if(classInstance.length >=1 || classInstance.length <= 4 ){
         reversedEntries = classInstance.reverse()
         slicedEntries = reversedEntries.slice(0,4)
     }
@@ -189,12 +196,31 @@ const printRecentEntries = () =>{
 
 (() =>{
     if(sessionStorage.getItem("loggedin")){
-        printSummary();      
-        printRecentEntries();
+        printSummary();  
+        if(classInstance.length == 0){
+            recentEntriesContainer.classList.add("noData__container")
+            recentEntriesContainer.innerHTML = `
+            <img src="../img/infomsg2.svg" width="150px" height="auto" alt=""> 
+            <p>You have not created any entries.</p> 
+            `
+        }else{
+            printRecentEntries();
+        }
+        if(totalExpenses == "$ 0"){
+            console.log(shoppingCategory)
+            graphContainer.classList.add("noData__container")
+            graphContainer.innerHTML = `
+            <img src="../img/infomsg1.svg" width="150px" height="auto" alt=""> 
+            <p>No data. You must log expenses in the add entry tab.</p> 
+            `
+        }
+           
+        // printRecentEntries();
         console.log("success!")
     } else {
         window.location.href = "http://192.168.1.3:5500/index.html";
     }
+    
 })()
 
 // eventListeners

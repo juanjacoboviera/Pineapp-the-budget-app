@@ -2,6 +2,7 @@ import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, app
 import {iconSelector} from '../js/icons.js';
 
 // generic variables
+const emptyTableContainer = document.querySelector(".noData__container")
 const logOut = document.querySelector("#nav__link4");
 const [classInstance] = getLocalStorageItems();
 const filterByEntryType = document.querySelector(".filter__inputs");
@@ -254,6 +255,20 @@ const printData = (pageNumber, array) =>{
                     printData(1, newList)
                     printSummary()
                     approvedEntryMsg("Entry deleted successfully")
+                    if(classInstance.length == 0){
+                        const totalSummary = document.querySelector("#total")
+                        const incomeSummary = document.querySelector("#incomeValue")
+                        const expensesSummary = document.querySelector("#expenses")
+                        emptyTableContainer.classList.remove("hiddenData")
+                        totalSummary.textContent = "$ 0"
+                        incomeSummary.textContent = "$ 0"
+                        expensesSummary.textContent = "$ 0"
+                        emptyTableContainer.innerHTML = `
+                        <img src="../img/infomsg3.svg" width="180px" height="auto" alt="">
+                        <p>No data. You must log entries in the <a href="./newEntry.html">add entry tab</a></p>
+                        `
+                    }
+                    
 
                 }
             });
@@ -329,9 +344,17 @@ filterByEntryType.addEventListener("change", e =>{
 
 document.addEventListener('DOMContentLoaded',() =>{
     if(sessionStorage.getItem("loggedin")){
-        printSummary() 
-        printData(1, classInstance)
-        buildPagination(currentPage)
+        if(classInstance.length == 0){
+            emptyTableContainer.innerHTML = `
+            <img src="../img/infomsg3.svg" width="180px" height="auto" alt="">
+            <p>No data. You must log entries in the <a href="./newEntry.html">add entry tab</a></p>
+            `
+        }else{
+            emptyTableContainer.classList.add("hiddenData")
+            printSummary() 
+            printData(1, classInstance)
+            buildPagination(currentPage)
+        }
     } else {
         window.location.href = "http://192.168.1.3:5500/index.html";
     }

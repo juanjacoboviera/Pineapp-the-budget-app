@@ -15,9 +15,9 @@
             <nav class="dashboard__nav">
                 <ul>
                     <div>
-                        <li id="nav__link1"><a href="../pages/dashboard.html">Dashboard</a></li>
-                        <li id="nav__link2"><a href="../pages/newEntry.html">Add Entry</a></li>
-                        <li id="nav__link3"><a href="../pages/dataTable.html">Data Table</a></li>
+                        <li id="nav__link1"><a href="./dashboard.html">Dashboard</a></li>
+                        <li id="nav__link2"><a href="./newEntry.html">Add Entry</a></li>
+                        <li id="nav__link3"><a href="./dataTable.html">Data Table</a></li>
                     </div>
                     <div>
                         <li id="nav__link4"><a href="#">Log out</a></li>
@@ -127,72 +127,18 @@
                <div class="bottomHalf__container">
                 <div class="recentEntries__container">
                     <h2 class="section__title">Recent Entries</h2>
+                    <!-- noData__container -->
                     <div class="generic__container">
-                        <div class="recentEntries__card">
-                            <div class="left__section">
-                                <div class="entry__icon">
-                                    <i class="fa-solid fa-heart-pulse iconBackground__circle table__icons"></i>
-                                </div>
-                                <div class="entry__category">
-                                    <h2>Health</h2>
-                                    <p>ER Visit</p>
-                                </div>
-                            </div>
-                            <div class="right__section">
-                                <p>- $250.000</p>
-                            </div>
-                        </div>
-                        <div class="recentEntries__card">
-                            <div class="left__section">
-                                <div class="entry__icon">
-                                    <i class="fa-solid fa-money-bill iconBackground__circle table__icons"></i>
-                                </div>
-                                <div class="entry__category">
-                                    <h2>Salary</h2>
-                                    <p>Main Income</p>
-                                </div>
-                            </div>
-                            <div class="right__section">
-                                <p>+ $1'300.000</p>
-                            </div>
-                        </div>
-                        <div class="recentEntries__card">
-                            <div class="left__section">
-                                <div class="entry__icon">
-                                    <i class="fa-solid fa-heart-pulse iconBackground__circle table__icons"></i>
-                                </div>
-                                <div class="entry__category">
-                                    <h2>Health</h2>
-                                    <p>ER Visit</p>
-                                </div>
-                            </div>
-                            <div class="right__section">
-                                <p>- $250.000</p>
-                            </div>
-                        </div>
-                        <div class="recentEntries__card">
-                            <div class="left__section">
-                                <div class="entry__icon">
-                                    <i class="fa-solid fa-heart-pulse iconBackground__circle table__icons"></i>
-                                </div>
-                                <div class="entry__category">
-                                    <h2>Health</h2>
-                                    <p>ER Visit</p>
-                                </div>
-                            </div>
-                            <div class="right__section">
-                                <p>- $250.000</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="graph__container">
                     <h2 class="section__title">Your spending</h2>
-                    <div class="generic__container">
+                    <div class="generic__container" id="graph"> 
+                        <!-- <img src="../img/infomsg1.svg" width="150px" height="auto" alt=""> 
+                        <p>No data. You must log expenses in the add entry tab.</p>  -->
+
                         <canvas class="generic__container" id="myChart">
-                            <!-- <div class="graph__img">
-                                <img src="../img/graph.png" alt="" width="300px">
-                            </div> -->
+                            
                         </canvas>
                     </div>
                 </div>
