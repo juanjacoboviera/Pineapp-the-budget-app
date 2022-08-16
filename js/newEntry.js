@@ -21,7 +21,7 @@ let entriesLog = [];
     if(sessionStorage.getItem("loggedin")){
         printSummary()
     } else {
-        window.location.href = "http://192.168.1.3:5500/index.html";
+        window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/index.html";
     }
 })()
 
@@ -92,7 +92,7 @@ submitEntryBtn.addEventListener("click", (e)=>{
 
 logOut.addEventListener("click", ()=>{
     sessionStorage.removeItem("loggedin")
-    window.location.href = "../index.html";
+    window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/index.html";
 })
 
 
