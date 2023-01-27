@@ -31,4 +31,3 @@ Project Documentation for Pineapp. The Budget Web App:
 •	Any bugs or issues will be addressed in a timely manner, and new features may be added based on customer feedback and business needs
 Note: This web app doesn't integrate a back-end because it was made for educational purposes. All data is stored in the local storage of the user's device, and the app does not need to communicate with a server.
 
-![image](https://user-images.githubusercontent.com/73240195/215011988-02f3c705-b672-4e1f-9923-f00cdb4e2957.png)
