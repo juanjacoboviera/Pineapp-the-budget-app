@@ -129,39 +129,39 @@ const centerText = {
     config
   );
  
-// exchange rate API call
+exchange rate API call
 
-//functions
-// var myHeaders = new Headers();
-// myHeaders.append("apikey", "rQXF9heikHGGGu2r1BEeiAchlRqKenhJ");
+functions
+var myHeaders = new Headers();
+myHeaders.append("apikey", "rQXF9heikHGGGu2r1BEeiAchlRqKenhJ");
 
-// var requestOptions = {
-//   method: 'GET',
-//   redirect: 'follow',
-//   headers: myHeaders
-// };
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow',
+  headers: myHeaders
+};
 
-// fetch("https://api.apilayer.com/exchangerates_data/latest?symbols=EUR%2CJPY%2CCOP%2CCAD%2CGBP&base=USD", requestOptions)
-//   .then(response => response.text())
-//   .then(result => {
-//     const euroInput = document.querySelector("#euro");
-//     const gbpInput = document.querySelector("#gbp");
-//     const jpyInput = document.querySelector("#jpy");
-//     const cadInput = document.querySelector("#cad");
-//     const copInput = document.querySelector("#cop");
+fetch("https://api.apilayer.com/exchangerates_data/latest?symbols=EUR%2CJPY%2CCOP%2CCAD%2CGBP&base=USD", requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    const euroInput = document.querySelector("#euro");
+    const gbpInput = document.querySelector("#gbp");
+    const jpyInput = document.querySelector("#jpy");
+    const cadInput = document.querySelector("#cad");
+    const copInput = document.querySelector("#cop");
 
-//     const currencies = JSON.parse(result)
-//     const {EUR, COP, CAD, GBP, JPY} = currencies.rates;
+    const currencies = JSON.parse(result)
+    const {EUR, COP, CAD, GBP, JPY} = currencies.rates;
 
-//     euroInput.textContent = EUR.toFixed(3);
-//     gbpInput.textContent = GBP.toFixed(3);
-//     jpyInput.textContent = JPY.toFixed(3);
-//     cadInput.textContent = CAD.toFixed(3);
-//     // copInput.textContent = COP.toFixed(2);
-//     copInput.textContent = COP.toLocaleString('en-US')
+    euroInput.textContent = EUR.toFixed(3);
+    gbpInput.textContent = GBP.toFixed(3);
+    jpyInput.textContent = JPY.toFixed(3);
+    cadInput.textContent = CAD.toFixed(3);
+    // copInput.textContent = COP.toFixed(2);
+    copInput.textContent = COP.toLocaleString('en-US')
     
-// })
-//   .catch(error => console.log('error', error));
+})
+  .catch(error => console.log('error', error));
 
 
 const printRecentEntries = () =>{
