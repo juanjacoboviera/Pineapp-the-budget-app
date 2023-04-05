@@ -131,7 +131,7 @@ const centerText = {
  
 // exchange rate API call
 
-functions
+// functions
 var myHeaders = new Headers();
 myHeaders.append("apikey", "rQXF9heikHGGGu2r1BEeiAchlRqKenhJ");
 
