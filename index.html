@@ -27,31 +27,33 @@
             </ul>
         </nav>
     </header>
-    <main class="container">
-        <div class="img__container">
-            <img src="./img/loginIMG2.png" width="520px" height="auto" alt="woman with laptop">
-        </div>
-        <div class="card__container">
-            <div class="card">
-                <div class="card__background"></div>
-                <div class="card__title">
-                    <h1 class="heading">Welcome to<br> pineapp</h1>
-                    <p>Track spending and categorize expenses so you can see where your money is going.</p>
+    <main class="layout">
+        <div class="container">
+            <div class="img__container">
+                <img src="./img/loginIMG2.png" width="520px" height="auto" alt="woman with laptop">
+            </div>
+            <div class="card__container">
+                <div class="card">
+                    <div class="card__background"></div>
+                    <div class="card__title">
+                        <h1 class="heading">Welcome to<br> pineapp</h1>
+                        <p>Track spending and categorize expenses so you can see where your money is going.</p>
+                    </div>
+                    <h2>LOG IN</h2>
+                    <form id="form" action="">
+                        <div class="username">
+                            <label for="userName">Username</label>
+                            <input type="text" id="userName" placeholder="Enter your username">
+                            <span id="userName__error" class="error"></span>
+                        </div>
+                        <div class="password">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password">
+                            <span id="password__error" class="error"></span>
+                            <button  class="login__button" id="submit" type="submit">Login</button>
+                        </div>
+                    </form>
                 </div>
-                <h2>LOG IN</h2>
-                <form id="form" action="">
-                    <div class="username">
-                        <label for="userName">Username</label>
-                        <input type="text" id="userName" placeholder="Enter your username">
-                        <span id="userName__error" class="error"></span>
-                    </div>
-                    <div class="password">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Enter your password">
-                        <span id="password__error" class="error"></span>
-                        <button  class="login__button" id="submit" type="submit">Login</button>
-                    </div>
-                </form>
             </div>
         </div>
     </main>
