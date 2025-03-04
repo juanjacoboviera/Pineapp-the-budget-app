@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/items', (req, res) => {
+  
     res.json({ message: 'Get all items' });
   })
 
