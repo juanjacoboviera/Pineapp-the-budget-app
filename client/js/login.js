@@ -1,5 +1,6 @@
 const form = document.querySelector("#form");
 const submitBtn = document.querySelector("#submit");
+const createUser = document.querySelector("#create__user");
 
 submitBtn.addEventListener("click", e =>{
     e.preventDefault()
@@ -33,9 +34,23 @@ submitBtn.addEventListener("click", e =>{
         passwordError.textContent = ""
         
     }
-    
-   
-   
 
+})
 
+createUser.addEventListener("click", async ()=>{
+    try{
+        const url = "http://localhost:3000/auth/register"
+        const response = await fetch(url,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username: "User", password: "123", role: "user" }),
+        })
+        const data = await response.json()
+        console.log(data)
+    }catch(error){
+        console.log(error)
+    }
+    console.log('click')
 })
