@@ -17,7 +17,7 @@ const getLocalStorageItems = () =>{
 
 const printSummary = () =>{
     const [classInstance, instanceEntry] = getLocalStorageItems();
-    if(classInstance === [] || instanceEntry === undefined){
+    if(classInstance.length == 0 || instanceEntry === undefined){
         console.log("LocalStorage is empty. No data to work with.")
     }else {
         document.querySelector("#incomeValue").textContent = `$ ${instanceEntry.totalType("income", classInstance)}`;
