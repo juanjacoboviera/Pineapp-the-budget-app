@@ -11,8 +11,18 @@ submitBtn.addEventListener("click", e =>{
     const passwordError = document.querySelector("#password__error")
     let user = form.userName.value
     let password = form.password.value
-    const onSubmit = async => login(user, password)
-    console.log(onSubmit())
+    const onSubmit = async () => {
+        try {
+            const response = await login(user, password)
+            sessionStorage.setItem("token", JSON.stringify(response.token));
+            window.location.href = "./pages/dashboard.html";
+        } catch (error) {
+            console.log("this is the error:", error)
+        }
+    }
+    onSubmit()
+    // console.log(onSubmit())
+    // login(user, password)
     
     // if(user === "user" && password === 123){
     //     let loggedIn = true;

@@ -195,7 +195,7 @@ const printRecentEntries = () =>{
 
 
 (() =>{
-    if(sessionStorage.getItem("loggedin")){
+    if(sessionStorage.getItem("token")){
         printSummary();  
         if(classInstance.length == 0){
             recentEntriesContainer.classList.add("noData__container")
