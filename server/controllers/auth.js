@@ -4,10 +4,11 @@ const User = require('../models/User');
 
 const register = async (req, res, next) => {
   const { username, password } = req.body;
+  console.log(username, "why caps?")
   try {
     const user = new User({ username, password: password });
     await user.save();
-    res.json({ message: 'Registration successful' });
+    res.json({ message: 'Registration successful', user: user });
   } catch (error) {
     console.log(error)
     next(error);

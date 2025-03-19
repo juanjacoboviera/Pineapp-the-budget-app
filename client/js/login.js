@@ -1,16 +1,17 @@
-import { login } from "./services";
+import { login } from "./services.js";
+
 
 const form = document.querySelector("#form");
 const submitBtn = document.querySelector("#submit");
-const createUser = document.querySelector("#create__user");
+const createUserBtn = document.querySelector("#create__user");
 
 submitBtn.addEventListener("click", e =>{
     e.preventDefault()
     const userError = document.querySelector("#userName__error")
     const passwordError = document.querySelector("#password__error")
     let user = form.userName.value
-    let password = parseInt(form.password.value)
-    const onSubmit = async => {login(user, password)}
+    let password = form.password.value
+    const onSubmit = async => login(user, password)
     console.log(onSubmit())
     
     // if(user === "user" && password === 123){
@@ -41,7 +42,7 @@ submitBtn.addEventListener("click", e =>{
 
 })
 
-createUser.addEventListener("click", async ()=>{
+createUserBtn.addEventListener("click", async ()=>{
     try{
         const url = "http://localhost:3000/auth/register"
         const response = await fetch(url,{
@@ -49,12 +50,11 @@ createUser.addEventListener("click", async ()=>{
             headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ username: "User", password: "123", role: "user" }),
+              body: JSON.stringify({ username: "user", password: "123", role: "user" }),
         })
         const data = await response.json()
         console.log(data)
     }catch(error){
         console.log(error)
     }
-    console.log('click')
 })
