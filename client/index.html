@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,900&amp;display=swap" rel="stylesheet">
+    <script type="module" defer src="./js/login.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,900&amp;display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>Login</title>
 </head>
-<body>
+
+<body id="bodyTag">
     <header>
         <nav class="nav_barLogging">
             <img src="./img/pineappLogo.svg" width="120px" height="auto" alt="carrot logo">
             <ul>
-                <a href="#"><li>How it works</li></a>
-                <a href="#"><li>Features</li></a>
-                <a href="#"><li>Resources</li></a>
-                <a href="#"><li>Pricing</li></a>
-                <a href="#"><li>Contact us</li></a>
-                <a href="#"><li>
-                    <i class="fa-brands fa-linkedin"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-youtube"></i>
-                </li></a>
+                <a href="#">
+                    <li>How it works</li>
+                </a>
+                <a href="#">
+                    <li>Features</li>
+                </a>
+                <a href="#">
+                    <li>Resources</li>
+                </a>
+                <a href="#">
+                    <li>Pricing</li>
+                </a>
+                <a href="#">
+                    <li>Contact us</li>
+                </a>
+                <a href="#">
+                    <li>
+                        <i class="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                    </li>
+                </a>
                 <button id="create__user">Create User</button>
             </ul>
         </nav>
@@ -51,13 +68,13 @@
                             <label for="password">Password</label>
                             <input type="password" id="password" placeholder="Enter your password">
                             <span id="password__error" class="error"></span>
-                            <button  class="login__button" id="submit" type="submit">Login</button>
+                            <button class="login__button" id="submit" type="submit">Login</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </main>
-    <script type="module" src="./js/login.js"></script>
 </body>
+
 </html>

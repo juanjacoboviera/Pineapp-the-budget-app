@@ -3,6 +3,7 @@ import { printSummary, getLocalStorageItems, getCategoryTotal } from "../js/func
 // generic variables
 const logOut = document.querySelector("#nav__link4");
 const recentEntriesContainer = document.querySelector(".generic__container")
+const bodyTag = document.querySelector('#body')
 let [classInstance, instanceEntry] = getLocalStorageItems()
 // chart variables
 let homeCategory = getCategoryTotal(classInstance, "expense", "home");
@@ -195,7 +196,12 @@ const printRecentEntries = () =>{
 
 
 (() =>{
-    if(sessionStorage.getItem("token")){
+    if(!sessionStorage.getItem("token")){
+        document.body.innerHTML = '<h3>Loading...</h3>';
+        setTimeout(() => {
+            window.location.href = "http://192.168.1.8:5500/client/index.html"; 
+        }, 1000); // Optional delay for better UX
+    } else {
         printSummary();  
         if(classInstance.length == 0){
             recentEntriesContainer.classList.add("noData__container")
@@ -214,12 +220,17 @@ const printRecentEntries = () =>{
             <p>No data. You must log expenses in the add entry tab.</p> 
             `
         }
-           
-        // printRecentEntries();
-        console.log("success!")
-    } else {
-        window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/index.html";
     }
+
+    // window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/client/index.html";
+    // if(sessionStorage.getItem("token")){
+           
+    //     // printRecentEntries();
+    //     console.log("success!")
+    // } 
+    // else {
+    //     window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/client/index.html";
+    // }
     
 })()
 
