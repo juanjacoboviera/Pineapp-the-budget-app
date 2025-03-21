@@ -3,7 +3,7 @@ import { printSummary, getLocalStorageItems, getCategoryTotal } from "../js/func
 // generic variables
 const logOut = document.querySelector("#nav__link4");
 const recentEntriesContainer = document.querySelector(".generic__container")
-const bodyTag = document.querySelector('#body')
+const pageContent = document.querySelector("#page__content")
 let [classInstance, instanceEntry] = getLocalStorageItems()
 // chart variables
 let homeCategory = getCategoryTotal(classInstance, "expense", "home");
@@ -194,14 +194,15 @@ const printRecentEntries = () =>{
 
 }
 
-
-(() =>{
+document.addEventListener('DOMContentLoaded', () => {
     if(!sessionStorage.getItem("token")){
-        document.body.innerHTML = '<h3>Loading...</h3>';
-        setTimeout(() => {
-            window.location.href = "http://192.168.1.8:5500/client/index.html"; 
-        }, 1000); // Optional delay for better UX
+        window.location.href = "http://127.0.0.1:5500/Pineapp-the-budget-app/client/index.html"; 
+        // document.body.innerHTML = '<h3>Loading...</h3>';
+        // setTimeout(() => {
+        // }, 1000);
     } else {
+        pageContent.classList.remove("hidden")
+        console.log(pageContent.classList)
         printSummary();  
         if(classInstance.length == 0){
             recentEntriesContainer.classList.add("noData__container")
@@ -221,6 +222,9 @@ const printRecentEntries = () =>{
             `
         }
     }
+})
+
+(() =>{
 
     // window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/client/index.html";
     // if(sessionStorage.getItem("token")){
