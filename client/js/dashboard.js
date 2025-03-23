@@ -196,7 +196,7 @@ const printRecentEntries = () =>{
 
 document.addEventListener('DOMContentLoaded', () => {
     if(!sessionStorage.getItem("token")){
-        window.location.href = "http://127.0.0.1:5500/Pineapp-the-budget-app/client/index.html"; 
+        window.location.href = "http://127.0.0.1:5500/client/index.html"; 
         // document.body.innerHTML = '<h3>Loading...</h3>';
         // setTimeout(() => {
         // }, 1000);

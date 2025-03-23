@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true
     },
-    
     password: {
       type: String,
       required: true
@@ -17,7 +16,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ['user', 'admin'],
       default: 'user'
-    }
+    },
+    entries:[
+      {_id: { type: Schema.Types.ObjectId, ref: 'entry', required: true }}
+  ]
   },
   { timestamps: true }
 );

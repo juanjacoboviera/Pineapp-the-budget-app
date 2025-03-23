@@ -1,6 +1,7 @@
 import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg } from './functions.js';
 import {iconSelector} from '../js/icons.js';
 import Entry from '../js/class.js'
+import { createEntry } from './services/entries.js';
 
 // generic variables
 let entry;
@@ -18,30 +19,32 @@ let entriesLog = [];
 
 
 (() =>{
-    if(sessionStorage.getItem("loggedin")){
-        printSummary()
-    } else {
-        window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/index.html";
-    }
+    printSummary()
+    // if(sessionStorage.getItem("loggedin")){
+    // } else {
+    //     window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/index.html";
+    // }
 })()
 
 
-const createEntry = () =>{
+const createNewEntry = () =>{
     const type = entryType;
     const category = categoryValue;
     const description = document.querySelector("#description").value;
     const amount = parseFloat(document.querySelector("#amount").value);
     const date = document.querySelector("#date2").value;
-
+    
     entry = new Entry(type, category, description, amount, date, categoryIconInput.value, typeIconInput.value);
-    if(localStorage.getItem("entries") === null){
-        entriesLog.push(entry);
-        localStorage.setItem("entries", JSON.stringify(entriesLog));
-    } else{
-        const newEntriesLog = JSON.parse(localStorage.getItem("entries"));
-        newEntriesLog.push(entry);
-        localStorage.setItem("entries", JSON.stringify(newEntriesLog));
-    }
+    createEntry(entry)
+
+    // if(localStorage.getItem("entries") === null){
+    //     entriesLog.push(entry);
+    //     localStorage.setItem("entries", JSON.stringify(entriesLog));
+    // } else{
+    //     const newEntriesLog = JSON.parse(localStorage.getItem("entries"));
+    //     newEntriesLog.push(entry);
+    //     localStorage.setItem("entries", JSON.stringify(newEntriesLog));
+    // }
 
 }
 
@@ -81,7 +84,7 @@ submitEntryBtn.addEventListener("click", (e)=>{
     console.log("approved")
     iconSelector(categoryValue, categoryIconInput)
     iconSelector(entryType, typeIconInput)
-    createEntry();
+    createNewEntry();
     approvedEntryMsg("Entry Registered Successfully")
     clearForm();
     console.log(entriesLog)

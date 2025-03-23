@@ -1,4 +1,4 @@
-import { login } from "./services.js";
+import { login } from "./services/auth.js";
 
 
 const form = document.querySelector("#form");
