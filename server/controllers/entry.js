@@ -12,7 +12,6 @@ const createEntry = async (req, res, next) =>{
         })
         
     } catch (error) {
-        console.log(error)
         res.status(500).json({
             success: false,
             message: 'Server Error',
@@ -21,4 +20,22 @@ const createEntry = async (req, res, next) =>{
     }
 }
 
-module.exports = { createEntry };
+const getAllEntries = async (req, res, next) =>{
+    const userId = req.body.id
+    try {
+        const entries = await Entry.find({userId})
+        res.status(200).json({
+            success: true,
+            message: "Entries retrieved successfully",
+            entries: entries
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Server Error',
+            error: error.message
+        })
+    }
+}
+
+module.exports = { createEntry, getAllEntries };
