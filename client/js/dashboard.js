@@ -1,5 +1,5 @@
 import { printSummary, getLocalStorageItems, getCategoryTotal } from "../js/functions.js";
-
+import { getAllEntries } from "./services/entries.js";
 // generic variables
 const logOut = document.querySelector("#nav__link4");
 const recentEntriesContainer = document.querySelector(".generic__container")
@@ -195,12 +195,14 @@ const printRecentEntries = () =>{
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if(!sessionStorage.getItem("token")){
-        window.location.href = "http://127.0.0.1:5500/client/index.html"; 
-        // document.body.innerHTML = '<h3>Loading...</h3>';
-        // setTimeout(() => {
-        // }, 1000);
-    } else {
+     const token = sessionStorage.getItem("token")
+     if(!sessionStorage.getItem("token")){
+         window.location.href = "http://127.0.0.1:5500/client/index.html"; 
+         // document.body.innerHTML = '<h3>Loading...</h3>';
+         // setTimeout(() => {
+            // }, 1000);
+        } else {
+        getAllEntries(token)
         pageContent.classList.remove("hidden")
         console.log(pageContent.classList)
         printSummary();  
@@ -224,19 +226,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-(() =>{
+// (() =>{
 
-    // window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/client/index.html";
-    // if(sessionStorage.getItem("token")){
-           
-    //     // printRecentEntries();
-    //     console.log("success!")
-    // } 
-    // else {
-    //     window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/client/index.html";
-    // }
+//     const token = sessionStorage.getItem("token")
+//      window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/client/index.html";
+//     if(token){
+//         getAllEntries(token)
+//     } 
+//     else {
+//         window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/client/index.html";
+//     }
     
-})()
+// })()
 
 // eventListeners
 

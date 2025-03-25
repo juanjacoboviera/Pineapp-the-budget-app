@@ -20,4 +20,26 @@ const createEntry = async (entry, token) => {
     }
 }
 
-export{createEntry}
+const getAllEntries = async (token) =>{
+    const url = "http://localhost:3000/entry/getAllEntries"
+    try {
+        const response = await fetch(url,{
+            method: "GET",
+            headers:{
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            }
+        });
+        const data = await response.json()
+        console.log(data)
+
+    } catch (error) {
+        throw({
+            message: 'There was an error!',
+            error: error
+        })
+    }
+    
+}
+
+export{createEntry, getAllEntries}
