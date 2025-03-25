@@ -4,7 +4,6 @@ const User = require('../models/User');
 
 const register = async (req, res, next) => {
   const { username, password } = req.body;
-  console.log(username, "why caps?")
   try {
     const user = new User({ username, password: password });
     await user.save();
@@ -28,7 +27,7 @@ const login = async (req, res, next) => {
     if (!passwordMatch) {
       return res.status(401).json({ message: 'Incorrect password' });
     }
-
+    
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
       expiresIn: '1 hour'
     });

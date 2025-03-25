@@ -1,9 +1,14 @@
 const Entry = require('../models/Entry')
 
 const createEntry = async (req, res, next) =>{
+    const entryCreator = req.user
+    const  entry_creator = {
+        name: entryCreator.username,
+        id: entryCreator._id
+    }
     const {type, category, description, amount, date, iconCategory, iconType} = req.body.entry;
     try {
-        const entry = new Entry({entryType: type, category, description,  amount: amount, date: date, iconCategory, iconType});
+        const entry = new Entry({entryType: type, category, description,  amount: amount, date: date, iconCategory, iconType, entry_creator});
         const savedEntry = await entry.save()
         res.status(200).json({
             success: true,

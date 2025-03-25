@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
       default: 'user'
     },
     entries:[
-      {_id: { type: Schema.Types.ObjectId, ref: 'entry', required: true }}
+      {_id: { type: mongoose.Types.ObjectId, ref: 'entry', required: false }}
   ]
   },
   { timestamps: true }

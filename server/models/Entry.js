@@ -32,7 +32,7 @@ const entrySchema = new mongoose.Schema(
         },
         entry_creator: {
             name: { type: String, required: true },
-            id: { type: Schema.Types.ObjectId, ref: 'user', required: true }
+            id: { type: mongoose.Types.ObjectId, ref: 'user', required: true }
             }
     },
   { timestamps: true }
