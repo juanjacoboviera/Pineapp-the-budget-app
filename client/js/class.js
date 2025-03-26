@@ -1,14 +1,15 @@
 
 class Entry {
-    constructor(type, category, description, amount, date, iconCategory, iconType){
-        this.type = type;
+    constructor(type, category, description, amount, date, iconCategory, iconType, id, entryCreator){
+        this.entryType = type;
         this.category = category;
         this.description = description;
         this.amount = amount;
         this.date = date;
         this.iconCategory = iconCategory;
         this.iconType = iconType;
-        this.id = Math.random().toString(16).slice(2);;
+        this._id = id;
+        this.entry_creator = entryCreator;
     }
 
     filterEntries(type, array){

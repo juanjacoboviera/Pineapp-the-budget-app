@@ -15,6 +15,16 @@ const getLocalStorageItems = () =>{
     return [classInstance, instanceEntry];
 }
 
+const createEntriesClass = (entriesArray) =>{
+    console.log(entriesArray,"received")
+    const classInstance = []
+    entriesArray.forEach(el =>{
+        const instanceEntry = new Entry(el.entryType, el.category, el.description, el.amount, el.date, el.iconCategory, el.iconType, el._id, el.entry_creator) 
+        return classInstance.push(instanceEntry)
+    })
+    return classInstance
+}
+
 const printSummary = () =>{
     const [classInstance, instanceEntry] = getLocalStorageItems();
     if(classInstance.length == 0 || instanceEntry === undefined){
@@ -91,6 +101,22 @@ const failedEntryMsg =  (msg) =>{
       }).showToast();
 }
 
+const handleCategory = (category) => {
+    const categoryTitle = `${category} Category`;
+
+    const existingCategory = expensesByCategoryList.find(el => el.category === categoryTitle);
+
+    if (existingCategory) {
+        existingCategory.categoryItems.push(category);
+    } else {
+        expensesByCategoryList.push({
+            category: categoryTitle,
+            categoryItems: [category]
+        });
+    }
+};
+
+
 const getCategoryTotal = (array, type, category) =>{
     const filteredType = array.filter(el =>{
          return el.type == type
@@ -108,4 +134,4 @@ const getCategoryTotal = (array, type, category) =>{
  }
 
 
- export{getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg,getCategoryTotal};
+ export{getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg,getCategoryTotal, handleCategory, createEntriesClass};

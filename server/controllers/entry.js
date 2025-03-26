@@ -2,7 +2,7 @@ const Entry = require('../models/Entry')
 
 const createEntry = async (req, res, next) =>{
     const entryCreator = req.user
-    const fakeUserId = new mongoose.Types.ObjectId()
+    // const fakeUserId = new mongoose.Types.ObjectId()
     const  entry_creator = {
         name: entryCreator.username,
         id: entryCreator._id
