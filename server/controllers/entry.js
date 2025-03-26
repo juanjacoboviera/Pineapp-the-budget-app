@@ -2,6 +2,7 @@ const Entry = require('../models/Entry')
 
 const createEntry = async (req, res, next) =>{
     const entryCreator = req.user
+    const fakeUserId = new mongoose.Types.ObjectId()
     const  entry_creator = {
         name: entryCreator.username,
         id: entryCreator._id
@@ -26,9 +27,9 @@ const createEntry = async (req, res, next) =>{
 }
 
 const getAllEntries = async (req, res, next) =>{
-    const userId = req.body.id
+    const userId = req.user._id
     try {
-        const entries = await Entry.find({userId})
+        const entries = await Entry.find({'entry_creator.id': userId })
         res.status(200).json({
             success: true,
             message: "Entries retrieved successfully",

@@ -23,6 +23,7 @@ let companyCategory = getCategoryTotal(classInstance, "expense", "myBusiness");
 let otherCategory = getCategoryTotal(classInstance, "expense", "other");
 let totalExpenses = instanceEntry? `$ ${instanceEntry.totalType("expense", classInstance)}` : "$ 0";
 let graphContainer = document.querySelector("#graph")
+let entriesList = []
 
 
 
@@ -165,12 +166,14 @@ fetch("https://api.apilayer.com/exchangerates_data/latest?symbols=EUR%2CJPY%2CCO
   .catch(error => console.log('error', error));
 
 
-const printRecentEntries = () =>{
+const printRecentEntries = (entriesList) =>{
+  console.log(entriesList, 'is it in?')
     recentEntriesContainer.innerHTML = "";
     let reversedEntries 
     let slicedEntries
-    if(classInstance.length >=1 || classInstance.length <= 4 ){
-        reversedEntries = classInstance.reverse()
+    console.log(entriesList, "the listing")
+    if(entriesList.length >=1 || entriesList.length <= 4 ){
+        reversedEntries = entriesList.reverse()
         slicedEntries = reversedEntries.slice(0,4)
     }
     slicedEntries.map(el =>{
@@ -198,31 +201,31 @@ document.addEventListener('DOMContentLoaded', () => {
      const token = sessionStorage.getItem("token")
      if(!sessionStorage.getItem("token")){
          window.location.href = "http://127.0.0.1:5500/client/index.html"; 
-         // document.body.innerHTML = '<h3>Loading...</h3>';
-         // setTimeout(() => {
-            // }, 1000);
         } else {
-        getAllEntries(token)
         pageContent.classList.remove("hidden")
-        console.log(pageContent.classList)
-        printSummary();  
-        if(classInstance.length == 0){
-            recentEntriesContainer.classList.add("noData__container")
-            recentEntriesContainer.innerHTML = `
-            <img src="../img/infomsg2.svg" width="150px" height="auto" alt=""> 
-            <p>You have not created any entries.</p> 
-            `
-        }else{
-            printRecentEntries();
-        }
-        if(totalExpenses == "$ 0"){
-            console.log(shoppingCategory)
-            graphContainer.classList.add("noData__container")
-            graphContainer.innerHTML = `
-            <img src="../img/infomsg1.svg" width="150px" height="auto" alt=""> 
-            <p>No data. You must log expenses in the add entry tab.</p> 
-            `
-        }
+        getAllEntries(token)
+        .then(data => {
+          entriesList = data.entries
+
+          printSummary();  
+          console.log(entriesList)
+          if(entriesList.length == 0){
+              recentEntriesContainer.classList.add("noData__container")
+              recentEntriesContainer.innerHTML = `
+              <img src="../img/infomsg2.svg" width="150px" height="auto" alt=""> 
+              <p>You have not created any entries.</p> 
+              `
+          }else{
+              printRecentEntries(entriesList);
+          }
+          if(totalExpenses == "$ 0"){
+              graphContainer.classList.add("noData__container")
+              graphContainer.innerHTML = `
+              <img src="../img/infomsg1.svg" width="150px" height="auto" alt=""> 
+              <p>No data. You must log expenses in the add entry tab.</p> 
+              `
+          }    
+        })
     }
 })
 

@@ -21,7 +21,7 @@ const createEntry = async (entry, token) => {
 }
 
 const getAllEntries = async (token) =>{
-    const url = "http://localhost:3000/entry/getAllEntries"
+    const url = "http://localhost:3000/entry/allEntries"
     try {
         const response = await fetch(url,{
             method: "GET",
@@ -31,7 +31,7 @@ const getAllEntries = async (token) =>{
             }
         });
         const data = await response.json()
-        console.log(data)
+        return data
 
     } catch (error) {
         throw({
