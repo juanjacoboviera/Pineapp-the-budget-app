@@ -5,7 +5,7 @@ const getLocalStorageItems = () =>{
     let instanceEntry
     const classInstance = []
     if(localStorage.getItem("entries") === null){
-        console.log("LocalStorage is empty. No data to show.")
+        // console.log("LocalStorage is empty. No data to show.")
     } else{
         localStorageEntries.forEach(el =>{
             instanceEntry = new Entry(el.type, el.category, el.description, el.amount, el.date, el.iconCategory, el.iconType)
@@ -16,7 +16,6 @@ const getLocalStorageItems = () =>{
 }
 
 const createEntriesClass = (entriesArray) =>{
-    console.log(entriesArray,"received")
     const classInstance = []
     entriesArray.forEach(el =>{
         const instanceEntry = new Entry(el.entryType, el.category, el.description, el.amount, el.date, el.iconCategory, el.iconType, el._id, el.entry_creator) 
@@ -101,21 +100,44 @@ const failedEntryMsg =  (msg) =>{
       }).showToast();
 }
 
-const handleCategory = (category) => {
-    const categoryTitle = `${category} Category`;
-
-    const existingCategory = expensesByCategoryList.find(el => el.category === categoryTitle);
-
-    if (existingCategory) {
-        existingCategory.categoryItems.push(category);
-    } else {
-        expensesByCategoryList.push({
-            category: categoryTitle,
-            categoryItems: [category]
-        });
-    }
+const divideSpendingbyCategory = (categories) => {
+    const expensesByCategoryList = {}
+    const expenses = categories.filter(category => category.entryType == "expense")
+   
+    expenses.map(expense =>{
+        const category = expense.category
+        if (expensesByCategoryList[category]) {
+            expensesByCategoryList[category].push(expense.amount);
+        } else {
+            // If the category doesn't exist, create a new array with the amount
+            expensesByCategoryList[category] = [expense.amount];
+        }
+    })
+    console.log(expensesByCategoryList)
+    return expensesByCategoryList
 };
 
+// const divideSpendingbyCategory = (categories) => {
+//     // const expensesByCategoryList = []
+
+//     const expenses = categories.filter(category => category.entryType == "expense")
+   
+//     const divideByCategories = expenses.map(expense =>{
+//         const category = expense.category
+//         const existingCategory = expensesByCategoryList.find(el => el.category === category);
+        
+//         if (existingCategory) {
+//             expensesByCategoryList.category.push(...expensesByCategoryList.category, expense.amount);
+//             // existingCategory.categoryItems.push({categoryTitle: [expense.amount]});
+//         } else {
+//             expensesByCategoryList.push({
+//                 [expense.category]: [expense.amount],
+//             });
+//         }
+//     })
+//     console.log(expensesByCategoryList[0])
+//     return expensesByCategoryList
+// };
 
 const getCategoryTotal = (array, type, category) =>{
     const filteredType = array.filter(el =>{
@@ -133,5 +155,31 @@ const getCategoryTotal = (array, type, category) =>{
      return totalCategory
  }
 
+const  filterEntries = (type, array) =>{
+    let filteredIncome = array.filter(el =>{
+        return el.entryType.includes(type)
+        })
+    
+        return filteredIncome
+}
 
- export{getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg,getCategoryTotal, handleCategory, createEntriesClass};
+const totalType = (type, array, filterEntries) => {
+    let filteredIncome = filterEntries(type, array)
+    let amount = filteredIncome.map(el =>{
+        return el.amount
+    })
+    
+    let total = amount.reduce((previousValue, currentValue) =>{
+        return previousValue + currentValue
+    }, 0)
+    return total 
+}
+
+const totalBalance = (array) => {
+    let income =this.totalType("income", array)
+    let expenses =this.totalType("expense", array)
+    return income - expenses;
+}
+
+
+ export{getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg,getCategoryTotal, divideSpendingbyCategory, createEntriesClass, totalBalance, totalType, filterEntries};

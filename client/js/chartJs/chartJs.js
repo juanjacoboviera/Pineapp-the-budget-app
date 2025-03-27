@@ -1,5 +1,5 @@
 
-import { getCategoryTotal, getLocalStorageItems, handleCategory } from "../functions.js";
+import { getCategoryTotal, getLocalStorageItems, divideSpendingbyCategory, totalType, filterEntries } from "../functions.js";
 
 
 // chart.js library object
@@ -23,9 +23,10 @@ const startChartJs = (entriesList) =>{
     let companyCategory = getCategoryTotal(classInstance, "expense", "myBusiness");
     let otherCategory = getCategoryTotal(classInstance, "expense", "other");
     // let totalExpenses = instanceEntry? `$ ${instanceEntry.totalType("expense", classInstance)}` : "$ 0";
-    let totalExpenses = instanceEntry? `$ ${instanceEntry.totalType("expense", classInstance)}` : "$ 0";
+    let totalExpenses = entriesList? `$ ${totalType("expense", entriesList, filterEntries)}` : "$ 0";
     let graphContainer = document.querySelector("#graph")
-    console.log(entriesList, "inside chart js")
+    console.log(entriesList)
+    divideSpendingbyCategory(entriesList)
  
 
 
