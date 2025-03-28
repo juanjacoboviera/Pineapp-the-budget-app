@@ -27,7 +27,7 @@ const createEntriesClass = (entriesArray) =>{
 const printSummary = () =>{
     const [classInstance, instanceEntry] = getLocalStorageItems();
     if(classInstance.length == 0 || instanceEntry === undefined){
-        console.log("LocalStorage is empty. No data to work with.")
+        // console.log("LocalStorage is empty. No data to work with.")
     }else {
         document.querySelector("#incomeValue").textContent = `$ ${instanceEntry.totalType("income", classInstance)}`;
         document.querySelector("#expenses").textContent = `$ ${instanceEntry.totalType("expense", classInstance)}`;
@@ -109,35 +109,18 @@ const divideSpendingbyCategory = (categories) => {
         if (expensesByCategoryList[category]) {
             expensesByCategoryList[category].push(expense.amount);
         } else {
-            // If the category doesn't exist, create a new array with the amount
             expensesByCategoryList[category] = [expense.amount];
         }
     })
-    console.log(expensesByCategoryList)
+   
+    Object.keys(expensesByCategoryList).forEach(category => {
+        const addCategoryTotal = expensesByCategoryList[category].reduce((previousValue, currentValue) =>{
+                return expensesByCategoryList[category] = previousValue + currentValue
+        }, 0)
+      });
+
     return expensesByCategoryList
 };
-
-// const divideSpendingbyCategory = (categories) => {
-//     // const expensesByCategoryList = []
-
-//     const expenses = categories.filter(category => category.entryType == "expense")
-   
-//     const divideByCategories = expenses.map(expense =>{
-//         const category = expense.category
-//         const existingCategory = expensesByCategoryList.find(el => el.category === category);
-        
-//         if (existingCategory) {
-//             expensesByCategoryList.category.push(...expensesByCategoryList.category, expense.amount);
-//             // existingCategory.categoryItems.push({categoryTitle: [expense.amount]});
-//         } else {
-//             expensesByCategoryList.push({
-//                 [expense.category]: [expense.amount],
-//             });
-//         }
-//     })
-//     console.log(expensesByCategoryList[0])
-//     return expensesByCategoryList
-// };
 
 const getCategoryTotal = (array, type, category) =>{
     const filteredType = array.filter(el =>{
@@ -153,6 +136,20 @@ const getCategoryTotal = (array, type, category) =>{
          return previousValue + currentValue
      }, 0)
      return totalCategory
+ }
+
+ const getObject = (value, array) =>{
+    const elements = []
+    if(value == "labels"){
+        Object.keys(array).forEach(key => {
+            return elements.push(key)     
+          });
+    }else{
+        Object.values(array).forEach(categoryvalue => {
+            return elements.push(categoryvalue)
+          });
+    }
+    return elements
  }
 
 const  filterEntries = (type, array) =>{
@@ -182,4 +179,4 @@ const totalBalance = (array) => {
 }
 
 
- export{getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg,getCategoryTotal, divideSpendingbyCategory, createEntriesClass, totalBalance, totalType, filterEntries};
+ export{getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg,getCategoryTotal, divideSpendingbyCategory, createEntriesClass, totalBalance, totalType, filterEntries, getObject};

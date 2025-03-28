@@ -1,4 +1,3 @@
-// array
 const entryIcons = [{type: 'salary',icon: 'fa-money-bill'}, 
                    {type: 'loan', icon: 'fa-hand-holding-dollar'},
                     {type: 'revenue', icon: 'fa-sack-dollar'},

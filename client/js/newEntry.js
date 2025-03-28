@@ -36,7 +36,6 @@ const createNewEntry = () =>{
     const date = document.querySelector("#date2").value;
     
     entry = new Entry(type, category, description, amount, date, categoryIconInput.value, typeIconInput.value);
-    console.log(entry)
     createEntry(entry, token)
 
     // if(localStorage.getItem("entries") === null){
