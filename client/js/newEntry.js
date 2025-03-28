@@ -1,10 +1,12 @@
-import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg } from './functions.js';
+import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg, createEntriesClass } from './functions.js';
+import { getAllEntries } from "./services/entries.js";
 import {iconSelector} from '../js/icons.js';
 import Entry from '../js/class.js'
 import { createEntry } from './services/entries.js';
 
 // generic variables
 let entry;
+const pageContent = document.querySelector("#page__content")
 const logOut = document.querySelector("#nav__link4");
 const incomeOption = document.querySelector("#income");
 const expenseOption = document.querySelector("#expense");
@@ -19,11 +21,17 @@ let entriesLog = [];
 
 
 (() =>{
-    printSummary()
-    // if(sessionStorage.getItem("loggedin")){
-    // } else {
-    //     window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/index.html";
-    // }
+    let entriesList 
+    const token = sessionStorage.getItem("token")
+    if(!sessionStorage.getItem("token")){
+        window.location.href = "http://127.0.0.1:5500/client/index.html"; 
+       } else {
+       pageContent.classList.remove("hidden")
+       getAllEntries(token)
+       .then(data => {
+         entriesList = createEntriesClass(data.entries)
+         printSummary(entriesList)
+       })}
 })()
 
 
@@ -37,16 +45,6 @@ const createNewEntry = () =>{
     
     entry = new Entry(type, category, description, amount, date, categoryIconInput.value, typeIconInput.value);
     createEntry(entry, token)
-
-    // if(localStorage.getItem("entries") === null){
-    //     entriesLog.push(entry);
-    //     localStorage.setItem("entries", JSON.stringify(entriesLog));
-    // } else{
-    //     const newEntriesLog = JSON.parse(localStorage.getItem("entries"));
-    //     newEntriesLog.push(entry);
-    //     localStorage.setItem("entries", JSON.stringify(newEntriesLog));
-    // }
-
 }
 
 const clearForm = () =>{

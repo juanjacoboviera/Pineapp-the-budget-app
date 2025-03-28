@@ -24,14 +24,14 @@ const createEntriesClass = (entriesArray) =>{
     return classInstance
 }
 
-const printSummary = () =>{
-    const [classInstance, instanceEntry] = getLocalStorageItems();
-    if(classInstance.length == 0 || instanceEntry === undefined){
+const printSummary = (entriesList) =>{
+    // const [classInstance, instanceEntry] = getLocalStorageItems();
+    if(!entriesList){
         // console.log("LocalStorage is empty. No data to work with.")
     }else {
-        document.querySelector("#incomeValue").textContent = `$ ${instanceEntry.totalType("income", classInstance)}`;
-        document.querySelector("#expenses").textContent = `$ ${instanceEntry.totalType("expense", classInstance)}`;
-        document.querySelector("#total").textContent = `$ ${instanceEntry.totalBalance(classInstance)}`
+        document.querySelector("#incomeValue").textContent = `$ ${totalType("income", entriesList)}`;
+        document.querySelector("#expenses").textContent = `$ ${totalType("expense", entriesList)}`;
+        document.querySelector("#total").textContent = `$ ${totalBalance(entriesList)}`
     }
     
  
@@ -160,7 +160,7 @@ const  filterEntries = (type, array) =>{
         return filteredIncome
 }
 
-const totalType = (type, array, filterEntries) => {
+const totalType = (type, array) => {
     let filteredIncome = filterEntries(type, array)
     let amount = filteredIncome.map(el =>{
         return el.amount
@@ -173,8 +173,8 @@ const totalType = (type, array, filterEntries) => {
 }
 
 const totalBalance = (array) => {
-    let income =this.totalType("income", array)
-    let expenses =this.totalType("expense", array)
+    let income = totalType("income", array)
+    let expenses = totalType("expense", array)
     return income - expenses;
 }
 

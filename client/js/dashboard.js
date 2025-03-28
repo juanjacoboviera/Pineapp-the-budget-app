@@ -1,4 +1,4 @@
-import { printSummary, getLocalStorageItems, getCategoryTotal, createEntriesClass } from "../js/functions.js";
+import { printSummary, getLocalStorageItems, getCategoryTotal, createEntriesClass,  } from "../js/functions.js";
 import { getAllEntries } from "./services/entries.js";
 import { renderChartJs } from "./chartJs/chartJs.js";
 // generic variables
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
           entriesList = createEntriesClass(data.entries)
           renderChartJs(entriesList)
-          printSummary();  
+          printSummary(entriesList);  
           if(entriesList.length == 0){
               recentEntriesContainer.classList.add("noData__container")
               recentEntriesContainer.innerHTML = `
