@@ -18,10 +18,10 @@ let entryType;
 let categoryValue;
 const submitEntryBtn = document.querySelector(".createEntryBtn");
 let entriesLog = [];
+let entriesList 
 
 
 (() =>{
-    let entriesList 
     const token = sessionStorage.getItem("token")
     if(!sessionStorage.getItem("token")){
         window.location.href = "http://127.0.0.1:5500/client/index.html"; 
@@ -45,6 +45,13 @@ const createNewEntry = () =>{
     
     entry = new Entry(type, category, description, amount, date, categoryIconInput.value, typeIconInput.value);
     createEntry(entry, token)
+    .then(()=>{
+        getAllEntries(token)
+           .then(data => {
+             entriesList = createEntriesClass(data.entries)
+             printSummary(entriesList)
+           })
+    })
 }
 
 const clearForm = () =>{

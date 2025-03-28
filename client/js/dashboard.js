@@ -65,7 +65,7 @@ const printRecentEntries = (entriesList) =>{
                 </div>
             </div>
             <div class="right__section">
-                <p class="${el.type === 'income'? 'positive__amount' : ''}">${el.type === 'income'? '+' : '-'} $${el.amount}</p>
+                <p class="${el.entryType === 'income'? 'positive__amount' : ''}">${el.entryType === 'income'? '+' : '-'} $${el.amount}</p>
             </div>
         </div>
         `
@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         getAllEntries(token)
         .then(data => {
           entriesList = createEntriesClass(data.entries)
+          console.log(entriesList)
           renderChartJs(entriesList)
           printSummary(entriesList);  
           if(entriesList.length == 0){
