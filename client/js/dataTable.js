@@ -1,7 +1,10 @@
-import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg} from './functions.js';
+import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg, createEntriesClass} from './functions.js';
 import {iconSelector} from '../js/icons.js';
+import { getAllEntries } from './services/entries.js';
 
 // generic variables
+let entriesList
+const pageContent = document.querySelector("#page__content")
 const emptyTableContainer = document.querySelector(".noData__container")
 const logOut = document.querySelector("#nav__link4");
 const [classInstance] = getLocalStorageItems();
@@ -33,7 +36,8 @@ let entryType;
 
 // pagination variables
 const paginator = document.querySelector("#paginator__container")
-let numberOfItems = classInstance.length;
+// let numberOfItems = classInstance.length;
+let numberOfItems 
 const numberPerPage = 4;
 const currentPage = 1;
 let numberOfPages = Math.ceil(numberOfItems/numberPerPage)
@@ -92,7 +96,7 @@ const searchDescription = (keyword, array) =>{
 }
 
 const selectType = (option, array) =>{
-    return array.filter(el => el.type.toLowerCase().includes(option))
+    return array.filter(el => el.entryType.toLowerCase().includes(option))
 }
 
 const filterDates = (date1, date2, array) =>{
@@ -157,13 +161,13 @@ const printData = (pageNumber, array) =>{
     newList.map((el, i) =>{
         tableContent.innerHTML += `
         <tr class="tr__styles" data-id="${i}" data-obj-id="${el.id}">
-        <td><i data-type="${el.type}" data-icon="${el.iconType}" class="fa-solid ${el.iconType} ${el.type === "income"? "icon__color2" : "icon__color"}"></i></td>
+        <td><i data-type="${el.entryType}" data-icon="${el.iconType}" class="fa-solid ${el.iconType} ${el.entryType === "income"? "icon__color2" : "icon__color"}"></i></td>
         <td>
             <i data-type="${el.category}" data-icon="${el.iconCategory}" class="fa-solid ${el.iconCategory} iconBackground__circle table__icons"></i>
             ${el.category}
         </td>
         <td>${el.description}</td>
-        <td class="${el.type === 'income'? 'positive__amount' : ''}">${el.type === 'income'? '+' : '-'} $${el.amount}</td>
+        <td class="${el.entryType === 'income'? 'positive__amount' : ''}">${el.entryType === 'income'? '+' : '-'} $${el.amount}</td>
         <td>${el.date}</td>
         <td>
             <button data-id="${i}" class="table__buttons editBtn"><i class="fa-solid fa-pencil"></i></button>
@@ -343,22 +347,27 @@ filterByEntryType.addEventListener("change", e =>{
 })
 
 document.addEventListener('DOMContentLoaded',() =>{
-    if(sessionStorage.getItem("loggedin")){
-        if(classInstance.length == 0){
-            emptyTableContainer.innerHTML = `
-            <img src="../img/infomsg3.svg" width="180px" height="auto" alt="">
-            <p>No data. You must log entries in the <a href="./newEntry.html">add entry tab</a></p>
-            `
-        }else{
-            emptyTableContainer.classList.add("hiddenData")
-            printSummary() 
-            printData(1, classInstance)
-            buildPagination(currentPage)
-        }
-    } else {
-        window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/index.html";
-    }
-    
+    const token = sessionStorage.getItem("token")
+    if(!sessionStorage.getItem("token")){
+        window.location.href = "http://127.0.0.1:5500/client/index.html"; 
+        } else {
+        pageContent.classList.remove("hidden")
+        getAllEntries(token)
+        .then(data => {
+            entriesList = createEntriesClass(data.entries)
+            numberOfItems = entriesList.length;
+            if(entriesList.length == 0){
+                emptyTableContainer.innerHTML = `
+                <img src="../img/infomsg3.svg" width="180px" height="auto" alt="">
+                <p>No data. You must log entries in the <a href="./newEntry.html">add entry tab</a></p>
+                `
+            }else{
+                emptyTableContainer.classList.add("hiddenData")
+                printSummary(entriesList)
+                printData(1, entriesList)
+                buildPagination(currentPage)
+            }
+        })}   
 }, false);
 
 
