@@ -44,4 +44,24 @@ const getAllEntries = async (req, res, next) =>{
     }
 }
 
+const editEntry = async (req, res , next) =>{
+    const modifiedEntry = req.body.entry
+    const {_id} = modifiedEntry
+    try {
+        const updatedEntry = await Entry.findByIdAndUpdate({_id}, modifiedEntry)
+        res.status(200).json({
+            success: true,
+            message: "Entry updated successfully",
+            entries: updatedEntry
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Server Error',
+            error: error.message
+        })
+    }
+
+}
+
 module.exports = { createEntry, getAllEntries };
