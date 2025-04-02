@@ -1,4 +1,4 @@
-import Entry from '../js/class.js'
+import Entry from './class.js'
 
 const getLocalStorageItems = () =>{
     const localStorageEntries = JSON.parse(localStorage.getItem("entries"));

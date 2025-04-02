@@ -1,5 +1,5 @@
 import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg, createEntriesClass} from './functions.js';
-import {iconSelector} from '../js/icons.js';
+import {iconSelector} from './icons.js';
 import { getAllEntries } from './services/entries.js';
 
 // generic variables
