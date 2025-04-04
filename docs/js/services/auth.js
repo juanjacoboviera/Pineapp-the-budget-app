@@ -1,7 +1,7 @@
-import { API_URL } from "./apiConfig"
+import { API_URL } from "./apiConfig.js"
 
 const login = async (username, password) => {
-    const url = `https://juanjacoboviera.github.io/Pineapp-the-budget-app/auth/login`
+    const url = `${API_URL}/auth/login`
     try {
         const response = await fetch(url, {
             method: "POST",
