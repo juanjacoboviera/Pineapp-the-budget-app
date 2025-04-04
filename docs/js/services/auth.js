@@ -1,5 +1,7 @@
+import { API_URL } from "./apiConfig"
+
 const login = async (username, password) => {
-    const url = "http://localhost:3000/auth/login"
+    const url = `${API_URL}/auth/login`
     try {
         const response = await fetch(url, {
             method: "POST",
