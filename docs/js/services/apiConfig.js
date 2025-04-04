@@ -1,5 +1,6 @@
-const API_URL = window.location.hostname === "localhost" 
-  ? "http://localhost:3000"  // Local development URL
-  : "https://juanjacoboviera.github.io/Pineapp-the-budget-app";  // Production URL
+const API_URL = production
+
+const local = 'http://localhost:3000'
+const production = 'https://juanjacoboviera.github.io/Pineapp-the-budget-app'
 
 export { API_URL };
