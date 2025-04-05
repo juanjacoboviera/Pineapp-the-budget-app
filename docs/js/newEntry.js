@@ -3,6 +3,7 @@ import { getAllEntries } from "./services/entries.js";
 import {iconSelector} from '../js/icons.js';
 import Entry from '../js/class.js'
 import { createEntry } from './services/entries.js';
+import { API_URL } from "./apiConfig.js"
 
 // generic variables
 let entry;
@@ -101,7 +102,7 @@ submitEntryBtn.addEventListener("click", (e)=>{
 
 logOut.addEventListener("click", ()=>{
     sessionStorage.removeItem("loggedin")
-    window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/index.html";
+    window.location.href = `${API_URL}/index.html`;
 })
 
 

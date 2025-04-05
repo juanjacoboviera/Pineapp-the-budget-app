@@ -1,6 +1,7 @@
 import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg, createEntriesClass} from './functions.js';
 import {iconSelector} from './icons.js';
 import { getAllEntries } from './services/entries.js';
+import { API_URL } from "./apiConfig.js"
 
 // generic variables
 let entriesList
@@ -393,6 +394,6 @@ saveEditEntryBtn.addEventListener("click", e =>{
 
 logOut.addEventListener("click", ()=>{
     sessionStorage.removeItem("loggedin")
-    window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/index.html";
+    window.location.href = `${API_URL}/index.html`;
 })
 
