@@ -1,6 +1,7 @@
+import { API_URL } from "./apiConfig.js"
 
 const createEntry = async (entry, token) => {
-    const url = "http://localhost:3000/entry/createEntry"
+    const url = `${API_URL}/entry/createEntry`
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -21,7 +22,7 @@ const createEntry = async (entry, token) => {
 }
 
 const getAllEntries = async (token) =>{
-    const url = "http://localhost:3000/entry/allEntries"
+    const url = `${API_URL}/entry/allEntries`
     try {
         const response = await fetch(url,{
             method: "GET",
