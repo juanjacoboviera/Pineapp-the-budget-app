@@ -15,7 +15,8 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5000',
   'http://192.168.1.9:5500',
-  'https://pineapp-the-budget-app.vercel.app'
+  'https://pineapp-the-budget-app.vercel.app',
+  'https://juanjacoboviera.github.io'
 ];
 
 const corsOptions = {

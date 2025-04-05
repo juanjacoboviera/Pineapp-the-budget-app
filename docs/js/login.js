@@ -52,19 +52,19 @@ submitBtn.addEventListener("click", e =>{
 
 })
 
-createUserBtn.addEventListener("click", async ()=>{
-    try{
-        const url = "http://localhost:3000/auth/register"
-        const response = await fetch(url,{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ username: "user", password: "123", role: "user" }),
-        })
-        const data = await response.json()
-        console.log(data)
-    }catch(error){
-        console.log(error)
-    }
-})
+// createUserBtn.addEventListener("click", async ()=>{
+//     try{
+//         const url = "http://localhost:3000/auth/register"
+//         const response = await fetch(url,{
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//               },
+//               body: JSON.stringify({ username: "user", password: "123", role: "user" }),
+//         })
+//         const data = await response.json()
+//         console.log(data)
+//     }catch(error){
+//         console.log(error)
+//     }
+// })
