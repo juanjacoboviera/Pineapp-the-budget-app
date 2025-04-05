@@ -11,27 +11,6 @@ connectDB();
 const app = express();
 app.use(express.json());
 
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:5000',
-  'http://192.168.1.9:5500',
-  'https://pineapp-the-budget-app.vercel.app',
-  'https://juanjacoboviera.github.io'
-];
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('No permitido por CORS'));
-    }
-  },
-  credentials: true
-};
-
-app.use(cors(corsOptions))
-
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*'); 
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
