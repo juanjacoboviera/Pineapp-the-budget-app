@@ -1,6 +1,7 @@
 import { printSummary, getLocalStorageItems, getCategoryTotal, createEntriesClass,  } from "../js/functions.js";
 import { getAllEntries } from "./services/entries.js";
 import { renderChartJs } from "./chartJs/chartJs.js";
+import { API_URL } from "./services/apiConfig.js"
 // generic variables
 const logOut = document.querySelector("#nav__link4");
 const recentEntriesContainer = document.querySelector(".generic__container")
@@ -110,6 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 logOut.addEventListener("click", ()=>{
     sessionStorage.removeItem("loggedin")
-    window.location.href = "https://juanjacoboviera.github.io/Pineapp-the-budget-app/index.html";
+    window.location.href = `${API_URL}/index.html`;
 })
 

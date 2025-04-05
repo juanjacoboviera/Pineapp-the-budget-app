@@ -1,7 +1,7 @@
 import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg, createEntriesClass} from './functions.js';
 import {iconSelector} from './icons.js';
 import { getAllEntries } from './services/entries.js';
-import { API_URL } from "./apiConfig.js"
+import { API_URL } from "./services/apiConfig.js"
 
 // generic variables
 let entriesList

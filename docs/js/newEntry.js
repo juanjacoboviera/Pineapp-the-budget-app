@@ -3,7 +3,7 @@ import { getAllEntries } from "./services/entries.js";
 import {iconSelector} from '../js/icons.js';
 import Entry from '../js/class.js'
 import { createEntry } from './services/entries.js';
-import { API_URL } from "./apiConfig.js"
+import { API_URL } from "./services/apiConfig.js"
 
 // generic variables
 let entry;
