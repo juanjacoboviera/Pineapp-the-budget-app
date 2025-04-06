@@ -15,7 +15,7 @@ submitBtn.addEventListener("click", e =>{
     let password = form.password.value
     const onSubmit = async () => {
         spinner.style.display = 'inline-block';
-        btnText.textContent = 'Signing in...';
+        btnText.textContent = 'Loading...';
         submitBtn.disabled = true;
         try {
             const response = await login(user, password)
@@ -24,6 +24,7 @@ submitBtn.addEventListener("click", e =>{
         } catch (error) {
             console.log("this is the error:", error)
         } finally {
+            btnText.textContent = 'Signing in...';
             spinner.style.display = 'none';
             submitBtn.disabled = false;
         }
