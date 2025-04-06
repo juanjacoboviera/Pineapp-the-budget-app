@@ -35,6 +35,13 @@ body {
     display: none !important;
 }
 
+.flex_center {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
 /* 0. LOGIN */
 
 .layout {
@@ -166,7 +173,7 @@ form {
     margin: 15px 0 0 0;
     color: white;
     border-style: none;
-    width: 80px;
+    min-width: 80px;
     height: 30px;
     cursor: pointer;
     ;
@@ -948,7 +955,24 @@ th {
 }
 
 @media (min-width: 1400px) {
-    .container{
+    .container {
         gap: 10rem
     }
-  }
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    border-top: 2px solid #333;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

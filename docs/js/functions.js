@@ -180,8 +180,6 @@ const totalBalance = (array) => {
 
 const signOut = () =>{
     sessionStorage.removeItem("token")
-    // window.location.href = `/docs/index.html`;
-    // console.log(window.location.hostname)
     window.location.href = window.location.hostname === '127.0.0.1' ? '/docs/' : 'https://pineapp-the-budget-app.vercel.app/';
 }
 

@@ -3,6 +3,8 @@ import { login } from "./services/auth.js";
 
 const form = document.querySelector("#form");
 const submitBtn = document.querySelector("#submit");
+const btnText = document.getElementById('btnText');
+const spinner = document.getElementById('spinner');
 const createUserBtn = document.querySelector("#create__user");
 
 submitBtn.addEventListener("click", e =>{
@@ -12,12 +14,19 @@ submitBtn.addEventListener("click", e =>{
     let user = form.userName.value
     let password = form.password.value
     const onSubmit = async () => {
+        spinner.style.display = 'inline-block';
+        btnText.textContent = 'Signing in...';
+        submitBtn.disabled = true;
         try {
             const response = await login(user, password)
             sessionStorage.setItem("token", JSON.stringify(response.token));
             window.location.href = "./pages/dashboard.html";
         } catch (error) {
             console.log("this is the error:", error)
+        } finally {
+            spinner.style.display = 'none';
+            btnText.textContent = 'Sign In';
+            submitBtn.disabled = false;
         }
     }
     onSubmit()

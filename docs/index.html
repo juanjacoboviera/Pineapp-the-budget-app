@@ -41,7 +41,7 @@
                         <i class="fa-brands fa-youtube"></i>
                     </li>
                 </a>
-                <button id="create__user">Create User</button>
+                <!-- <button id="create__user">Create User</button> -->
             </ul>
         </nav>
     </header>
@@ -68,7 +68,10 @@
                             <label for="password">Password</label>
                             <input type="password" id="password" placeholder="Enter your password" value="123">
                             <span id="password__error" class="error"></span>
-                            <button class="login__button" id="submit" type="submit">Login</button>
+                            <button class="login__button flex_center" id="submit" type="submit">
+                                <span id="btnText">Sign In</span>
+                                <span id="spinner" class="spinner" style="display: none;"></span>
+                            </button>
                         </div>
                     </form>
                 </div>
