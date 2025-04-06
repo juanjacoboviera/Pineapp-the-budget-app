@@ -1,4 +1,4 @@
-import { printSummary, getLocalStorageItems, getCategoryTotal, createEntriesClass,  } from "../js/functions.js";
+import { printSummary, getLocalStorageItems, getCategoryTotal, createEntriesClass, signOut } from "../js/functions.js";
 import { getAllEntries } from "./services/entries.js";
 import { renderChartJs } from "./chartJs/chartJs.js";
 import { API_URL } from "./services/apiConfig.js"
@@ -110,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // eventListeners
 
 logOut.addEventListener("click", ()=>{
-    sessionStorage.removeItem("token")
-    window.location.href = `/docs/index.html`;
+    signOut()
 })
 

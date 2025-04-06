@@ -1,4 +1,4 @@
-import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg, createEntriesClass } from './functions.js';
+import { getLocalStorageItems, printSummary, radiosListener, failedEntryMsg, approvedEntryMsg, createEntriesClass, signOut } from './functions.js';
 import { getAllEntries } from "./services/entries.js";
 import {iconSelector} from '../js/icons.js';
 import Entry from '../js/class.js'
@@ -101,8 +101,7 @@ submitEntryBtn.addEventListener("click", (e)=>{
 })
 
 logOut.addEventListener("click", ()=>{
-    sessionStorage.removeItem("token")
-    window.location.href = `/docs/index.html`;
+    signOut()
 })
 
 
