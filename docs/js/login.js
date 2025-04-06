@@ -25,7 +25,6 @@ submitBtn.addEventListener("click", e =>{
             console.log("this is the error:", error)
         } finally {
             spinner.style.display = 'none';
-            btnText.textContent = 'Sign In';
             submitBtn.disabled = false;
         }
     }
