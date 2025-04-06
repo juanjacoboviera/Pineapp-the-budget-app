@@ -76,6 +76,10 @@ const printRecentEntries = (entriesList) =>{
 
 document.addEventListener('DOMContentLoaded', () => {
       const spinners = document.querySelectorAll('.spinner');
+      const largeSpinners = document.querySelectorAll('.spinner__large');
+      const pieChart = document.querySelector("#myChart");
+
+      const dataContainers = document.querySelectorAll('.generic__container');
      const token = sessionStorage.getItem("token")
      if(!sessionStorage.getItem("token")){
          window.location.href = "http://127.0.0.1:5500/client/index.html"; 
@@ -95,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
               `
           }else{
               printRecentEntries(entriesList);
+              pieChart.style.display = 'inline-block';
           }
           if(totalExpenses == "$ 0"){
               graphContainer.classList.add("noData__container")
@@ -106,6 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .finally(() => {
             spinners.forEach(spinner => spinner.style.display = 'none')
+            largeSpinners.forEach(spinner => spinner.style.display = 'none')
+            dataContainers.forEach(spinner => spinner.classList.remove('flex_center'))
           });
     }
 })

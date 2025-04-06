@@ -140,18 +140,17 @@
                     <div class="recentEntries__container">
                         <h2 class="section__title">Recent Entries</h2>
                         <!-- noData__container -->
-                        <div class="generic__container">
+                        <div class="generic__container flex_center">
+                            <span class="spinner__large"></span>
                         </div>
                     </div>
                     <div class="graph__container">
                         <h2 class="section__title">Your spending</h2>
-                        <div class="generic__container" id="graph">
+                        <div class="generic__container flex_center" id="graph">
                             <!-- <img src="../img/infomsg1.svg" width="150px" height="auto" alt=""> 
                         <p>No data. You must log expenses in the add entry tab.</p>  -->
-
-                            <canvas class="generic__container" id="myChart">
-
-                            </canvas>
+                            <span class="spinner__large"></span>
+                            <canvas style="display: none;" class="generic__container" id="myChart"></canvas>
                         </div>
                     </div>
                 </div>

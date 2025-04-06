@@ -348,6 +348,7 @@ filterByEntryType.addEventListener("change", e =>{
 })
 
 document.addEventListener('DOMContentLoaded',() =>{
+    const largeSpinner= document.querySelector(".spinner__large")
     const spinners = document.querySelectorAll('.spinner');
     const token = sessionStorage.getItem("token")
     if(!sessionStorage.getItem("token")){
@@ -359,6 +360,7 @@ document.addEventListener('DOMContentLoaded',() =>{
             entriesList = createEntriesClass(data.entries)
             numberOfItems = entriesList.length;
             if(entriesList.length == 0){
+                largeSpinner.style.display = 'none'
                 emptyTableContainer.innerHTML = `
                 <img src="../img/infomsg3.svg" width="180px" height="auto" alt="">
                 <p>No data. You must log entries in the <a href="./newEntry.html">add entry tab</a></p>
@@ -371,6 +373,7 @@ document.addEventListener('DOMContentLoaded',() =>{
             }
         }).finally(() => {
             spinners.forEach(spinner => spinner.style.display = 'none')
+            largeSpinner.style.display = 'none'
           });}   
 }, false);
 
