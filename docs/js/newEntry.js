@@ -101,8 +101,8 @@ submitEntryBtn.addEventListener("click", (e)=>{
 })
 
 logOut.addEventListener("click", ()=>{
-    sessionStorage.removeItem("loggedin")
-    window.location.href = `${API_URL}/index.html`;
+    sessionStorage.removeItem("token")
+    window.location.href = `/docs/index.html`;
 })
 
 
