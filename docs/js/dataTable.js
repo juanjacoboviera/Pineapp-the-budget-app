@@ -348,6 +348,7 @@ filterByEntryType.addEventListener("change", e =>{
 })
 
 document.addEventListener('DOMContentLoaded',() =>{
+    const spinners = document.querySelectorAll('.spinner');
     const token = sessionStorage.getItem("token")
     if(!sessionStorage.getItem("token")){
         window.location.href = "http://127.0.0.1:5500/client/index.html"; 
@@ -368,7 +369,9 @@ document.addEventListener('DOMContentLoaded',() =>{
                 printData(1, entriesList)
                 buildPagination(currentPage)
             }
-        })}   
+        }).finally(() => {
+            spinners.forEach(spinner => spinner.style.display = 'none')
+          });}   
 }, false);
 
 

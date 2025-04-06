@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,900&amp;display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,900&amp;display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <title>Home</title>
 </head>
+
 <body>
     <section class="modal__container">
         <div class="modal">
             <h2 class="section__title modal__title">Edit Entry</h2>
-            <a  id="closeModal" href="">
+            <a id="closeModal" href="">
                 <i class="fa-solid fa-rectangle-xmark"></i>
             </a>
             <div class="employee__creator">
                 <form action="" class="entry__form modal__layout">
-                    <input  id="index__Grabber" type="hidden">
+                    <input id="index__Grabber" type="hidden">
                     <div class="entry__div modal__elementWidth">
                         <label for="entryType">Type</label>
                         <div class="checkbox__container">
                             <div>
                                 <input id="income" type="radio" value="income" class="radio" name="option">
-                                <label  for="income">Income</label>
+                                <label for="income">Income</label>
                             </div>
-                           <div>
+                            <div>
                                 <input id="expense" type="radio" value="expense" class="radio" name="option">
                                 <label for="expense">Expense</label>
-                           </div>
+                            </div>
                         </div>
                     </div>
                     <div class="entry__div modal__elementWidth" id="incomeCat">
@@ -110,7 +114,7 @@
             <div class="generalInfo__container">
                 <div class="user__container">
                     <div class="user__avatar">
-                        <img  src="../img/boredApe.jpg" alt="" width="55px" height="auto">
+                        <img src="../img/boredApe.jpg" alt="" width="55px" height="auto">
                     </div>
                     <div class="user__greeting">
                         <h2></h2>
@@ -120,27 +124,30 @@
                 <div class="summary__container">
                     <div class="summary__card">
                         <div class="summary__total">
-                                <h1>Total Balance</h1>
-                                <p id="total">$ 0</p>
-                         </div>
+                            <h1>Total Balance</h1>
+                            <span class="spinner margin-top"></span>
+                            <p id="total"></p>
+                        </div>
                     </div>
                     <div class="summary__card summary__card-detail">
                         <div class="summary__icon">
                             <i class="fa-solid fa-arrow-up iconBackground__circle"></i>
                         </div>
                         <div class="summary__total incomeExpenses__total">
-                                <h1>Income</h1>
-                                <p id="incomeValue">$ 0</p>
-                         </div>
+                            <h1>Income</h1>
+                            <span class="spinner margin-top"></span>
+                            <p id="incomeValue"></p>
+                        </div>
                     </div>
                     <div class="summary__card summary__card-detail">
                         <div class="summary__icon icon__color">
                             <i class="fa-solid fa-arrow-down iconBackground__circle"></i>
                         </div>
                         <div class="summary__total incomeExpenses__total">
-                                <h1>Expenses</h1>
-                                <p id="expenses">$ 0</p>
-                         </div>
+                            <h1>Expenses</h1>
+                            <span class="spinner margin-top"></span>
+                            <p id="expenses"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,7 +157,8 @@
                         <form class="table__filters" action="">
                             <div class="search__elements">
                                 <i class="fa-solid fa-magnifying-glass search__icon"></i>
-                                <input class="search__input" id="search__data" type="text" placeholder="Search by Description">
+                                <input class="search__input" id="search__data" type="text"
+                                    placeholder="Search by Description">
                             </div>
                             <div class="sort__elements">
                                 <label for="dataType">Filter by</label>
@@ -162,28 +170,29 @@
                                 </select>
                             </div>
                             <label for="date__input">Search by Date</label>
-                            <input class="filter__inputs calendar__input" type="date" name="" id="date__input" placeholder="Select Date Range">
+                            <input class="filter__inputs calendar__input" type="date" name="" id="date__input"
+                                placeholder="Select Date Range">
                             <button type="submit" class="createEntryBtn calendarBtn">Reset</button>
                         </form>
                     </div>
-                   <table>
-                    <thead class="table__titles-bgColor">
-                        <tr>
-                            <th>Type</th>
-                            <th>Category</th>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                            <th>Actions</th>
-                        </tr>
+                    <table>
+                        <thead class="table__titles-bgColor">
+                            <tr>
+                                <th>Type</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
                         <tbody id="tableContent">
                         </tbody>
-                    </thead>
-                   </table>
-                   <div class="noData__container noData__table">
-                   </div>
-                   <div id="paginator__container">
-                   </div>
+                        </thead>
+                    </table>
+                    <div class="noData__container noData__table">
+                    </div>
+                    <div id="paginator__container">
+                    </div>
                 </div>
             </div>
         </section>
@@ -191,6 +200,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script  type="module" src="../js/dataTable.js"></script>
+    <script type="module" src="../js/dataTable.js"></script>
 </body>
+
 </html>

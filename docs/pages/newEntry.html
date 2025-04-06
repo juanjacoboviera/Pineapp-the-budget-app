@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,900&amp;display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,900&amp;display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <title>Home</title>
 </head>
+
 <body>
     <main id="page__content" class="dashboard__container ">
         <section class="nav__container">
@@ -30,7 +34,7 @@
             <div class="generalInfo__container">
                 <div class="user__container">
                     <div class="user__avatar">
-                        <img  src="../img/boredApe.jpg" alt="" width="55px" height="auto">
+                        <img src="../img/boredApe.jpg" alt="" width="55px" height="auto">
                     </div>
                     <div class="user__greeting">
                         <h2></h2>
@@ -40,27 +44,30 @@
                 <div class="summary__container">
                     <div class="summary__card">
                         <div class="summary__total">
-                                <h1>Total Balance</h1>
-                                <p id="total">$ 0</p>
-                         </div>
+                            <h1>Total Balance</h1>
+                            <span class="spinner margin-top"></span>
+                            <p id="total"></p>
+                        </div>
                     </div>
                     <div class="summary__card summary__card-detail">
                         <div class="summary__icon">
                             <i class="fa-solid fa-arrow-up iconBackground__circle"></i>
                         </div>
                         <div class="summary__total incomeExpenses__total">
-                                <h1>Income</h1>
-                                <p id="incomeValue">$ 0</p>
-                         </div>
+                            <h1>Income</h1>
+                            <span class="spinner margin-top"></span>
+                            <p id="incomeValue"></p>
+                        </div>
                     </div>
                     <div class="summary__card summary__card-detail">
                         <div class="summary__icon icon__color">
                             <i class="fa-solid fa-arrow-down iconBackground__circle"></i>
                         </div>
                         <div class="summary__total incomeExpenses__total">
-                                <h1>Expenses</h1>
-                                <p id="expenses">$ 0</p>
-                         </div>
+                            <h1>Expenses</h1>
+                            <span class="spinner margin-top"></span>
+                            <p id="expenses"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,12 +82,12 @@
                                 <div class="checkbox__container">
                                     <div>
                                         <input id="income" type="radio" value="income" class="radio" name="option">
-                                        <label  for="income">Income</label>
+                                        <label for="income">Income</label>
                                     </div>
-                                   <div>
+                                    <div>
                                         <input id="expense" type="radio" value="expense" class="radio" name="option">
                                         <label for="expense">Expense</label>
-                                   </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="entry__div" id="incomeCat">
@@ -117,7 +124,8 @@
                             </div>
                             <div class="entry__div">
                                 <label for="description">Description</label>
-                                <input class="entry__inputStyle" id="description" type="text" placeholder="Flight tickets">
+                                <input class="entry__inputStyle" id="description" type="text"
+                                    placeholder="Flight tickets">
                             </div>
                             <div class="entry__div">
                                 <label for="amount">Amount</label>
@@ -145,4 +153,5 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script type="module" src="../js/newEntry.js"></script>
 </body>
+
 </html>
