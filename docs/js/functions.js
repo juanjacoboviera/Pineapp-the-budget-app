@@ -100,6 +100,23 @@ const failedEntryMsg =  (msg) =>{
       }).showToast();
 }
 
+const infoMsg =  (msg) =>{
+    Toastify({
+        text: msg,
+        duration: 60000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "rgb(159, 79, 250)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+}
+
 const divideSpendingbyCategory = (categories) => {
     const expensesByCategoryList = {}
     const expenses = categories.filter(category => category.entryType == "expense")
@@ -184,4 +201,4 @@ const signOut = () =>{
 }
 
 
- export{getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg,getCategoryTotal, divideSpendingbyCategory, createEntriesClass, totalBalance, totalType, filterEntries, getObject, signOut};
+ export{infoMsg, getLocalStorageItems, printSummary, radiosListener, approvedEntryMsg, failedEntryMsg,getCategoryTotal, divideSpendingbyCategory, createEntriesClass, totalBalance, totalType, filterEntries, getObject, signOut};

@@ -1,5 +1,5 @@
 import { login } from "./services/auth.js";
-
+import { infoMsg } from "./functions.js";
 
 const form = document.querySelector("#form");
 const submitBtn = document.querySelector("#submit");
@@ -17,6 +17,7 @@ submitBtn.addEventListener("click", e =>{
         spinner.style.display = 'inline-block';
         btnText.textContent = 'Loading...';
         submitBtn.disabled = true;
+        infoMsg("Hello! The app's API is hosted on Render.com on a free plan, so it may take 40-50 seconds to load the first time as the server wakes up. Thanks for your patience!")
         try {
             const response = await login(user, password)
             sessionStorage.setItem("token", JSON.stringify(response.token));
